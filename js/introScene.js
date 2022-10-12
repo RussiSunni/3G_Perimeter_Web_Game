@@ -12,7 +12,6 @@ class IntroScene extends Phaser.Scene {
     }
     create() {
         //define our objects  
-
         // Background.
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
@@ -30,8 +29,8 @@ class IntroScene extends Phaser.Scene {
         this.logo.scaleY = 0.15;
 
         this.button = this.add.image(game.config.width / 2, game.config.height / 2 + 100, "button");
-        this.button.scaleX = 1;
-        this.button.scaleY = 1;
+        this.button.setInteractive();
+        this.button.on("pointerdown", this.onButtonDown, this);
 
         this.shark01 = this.add.image(150, 500, "shark01");
         this.shark01.scaleX = 0.3;
@@ -42,8 +41,9 @@ class IntroScene extends Phaser.Scene {
         this.fish01.scaleY = 0.2;
 
     }
-    update() {
-        //constant running loop
-    }
 
+    onButtonDown() {
+        this.button.alpha = 0.5;
+        this.scene.start("ObjectivesScene");
+    }
 }
