@@ -1,6 +1,6 @@
-class Objective1Scene extends Phaser.Scene {
+class Page3Scene extends Phaser.Scene {
     constructor() {
-        super('Objective1Scene');
+        super('Page3Scene');
     }
     preload() {
         //load our images or sounds 
@@ -19,7 +19,7 @@ class Objective1Scene extends Phaser.Scene {
         this.text1.setOrigin(0.5, 0.5);
 
         // Images.
-        this.logo = this.add.image(120, 130, "logo");
+        this.logo = this.add.image(120, 80, "logo");
         this.logo.scaleX = 0.15;
         this.logo.scaleY = 0.15;
 
@@ -39,6 +39,8 @@ class Objective1Scene extends Phaser.Scene {
         this.circle2.fillStyle(0xf414b4);
         this.circle2.strokeCircle(650, 520, 40);
         this.circle2.fillCircle(650, 520, 40);
+        this.circle2.setInteractive();
+        this.circle2.on("pointerdown", this.onButtonDown, this);
 
         // Text.
         this.number1 = this.add.text(650, 400, "1", { fontFamily: "Arial", fontSize: "32px" });
@@ -49,13 +51,23 @@ class Objective1Scene extends Phaser.Scene {
 
         // Rounded Rectangle.
         this.roundedRect1 = this.add.graphics();
-        this.roundedRect1.fillStyle(0xffff00, 1);
-        this.roundedRect1.fillRoundedRect(700, 400, 300, 80, 32);
-        this.roundedRect1.fillStyle(0xff00ff, 1);
+        this.roundedRect1.fillStyle(0x70ad47, 1);
+        this.roundedRect1.fillRoundedRect(710, 360, 400, 80, 16);
+        this.roundedRect1.setInteractive(new Phaser.Geom.Rectangle(710, 360, 400, 80), Phaser.Geom.Rectangle.Contains);
+        this.roundedRect1.on("pointerdown", this.onButtonDown, this);
+
+        this.roundedRect2 = this.add.graphics();
+        this.roundedRect2.fillStyle(0x4472c4, 1);
+        this.roundedRect2.fillRoundedRect(710, 480, 400, 80, 16);
+
+        // Text.
+        this.objectiveText1 = this.add.text(720, 382, "Finding Perimeter", { fontFamily: "Arial", fontSize: "22px" });
+        this.objectiveText2 = this.add.text(720, 502, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "22px" });
     }
 
     onButtonDown() {
-
+        this.roundedRect1.alpha = 0.5;
+        this.scene.start("Page4Scene");
     }
 
 }

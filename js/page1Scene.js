@@ -1,6 +1,6 @@
-class IntroScene extends Phaser.Scene {
+class Page1Scene extends Phaser.Scene {
     constructor() {
-        super('IntroScene');
+        super('Page1Scene');
     }
     preload() {
         //load our images or sounds 
@@ -24,7 +24,7 @@ class IntroScene extends Phaser.Scene {
         this.text2.setOrigin(0.5, 0.5);
 
         // Images.
-        this.logo = this.add.image(1150, 150, "logo");
+        this.logo = this.add.image(1150, 80, "logo");
         this.logo.scaleX = 0.15;
         this.logo.scaleY = 0.15;
 
@@ -44,6 +44,6 @@ class IntroScene extends Phaser.Scene {
 
     onButtonDown() {
         this.button.alpha = 0.5;
-        this.scene.start("ObjectivesScene");
+        this.scene.start("Page2Scene");
     }
 }

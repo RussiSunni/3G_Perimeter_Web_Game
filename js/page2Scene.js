@@ -1,6 +1,6 @@
-class ObjectivesScene extends Phaser.Scene {
+class Page2Scene extends Phaser.Scene {
     constructor() {
-        super('ObjectivesScene');
+        super('Page2Scene');
     }
     preload() {
         //load our images or sounds 
@@ -27,7 +27,7 @@ class ObjectivesScene extends Phaser.Scene {
         this.text2.setOrigin(0.5, 0.5);
 
         // Images.
-        this.logo = this.add.image(120, 130, "logo");
+        this.logo = this.add.image(120, 80, "logo");
         this.logo.scaleX = 0.15;
         this.logo.scaleY = 0.15;
 
@@ -44,7 +44,7 @@ class ObjectivesScene extends Phaser.Scene {
     }
 
     onButtonDown() {
-        this.scene.start("Objective1Scene");
+        this.scene.start("Page3Scene");
     }
 
 }
