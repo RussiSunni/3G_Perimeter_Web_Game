@@ -7,6 +7,9 @@ class Page2Scene extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("shark01", "images/shark01.png");
+
+        this.load.audio("shark01", ["audio/page2/shark01.mp3"])
+        this.load.audio("shark02", ["audio/page2/shark02.mp3"])
     }
 
     create() {
@@ -41,10 +44,25 @@ class Page2Scene extends Phaser.Scene {
         this.graphics.fillStyle(0xffc000);
         this.graphics.strokeRect(650, 500, 400, 150);
         this.graphics.fillRect(650, 500, 400, 150);
+
+
+        // Audio
+        this.sharkSound01 = this.sound.add("shark01");
+
+        this.sharkSound01.on("complete", this.playSecondSound, this);
+        //   this.sharkSound01.play();
+
+        // this.sharkSound02 = this.sound.add("shark02");
+        // this.sharkSound02.play();
+
     }
 
     onButtonDown() {
         this.scene.start("Page3Scene");
+    }
+
+    playSecondSound() {
+        console.log("test")
     }
 
 }
