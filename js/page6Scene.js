@@ -13,6 +13,8 @@ class Page6Scene extends Phaser.Scene {
         // Background.
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
+        this.background.setInteractive();
+        this.background.on("pointerdown", this.onButtonDown, this);
 
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
@@ -61,16 +63,44 @@ class Page6Scene extends Phaser.Scene {
         this.text8 = this.add.text(460, 430, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
 
         this.text9 = this.add.text(600, 240, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text10 = this.add.text(600, 240, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        this.text10 = this.add.text(720, 240, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        this.text11 = this.add.text(730, 320, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        this.text12 = this.add.text(660, 360, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        this.text13 = this.add.text(590, 320, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+
+        // Drop zones
+        this.dropZone1 = this.add.graphics();
+        this.dropZone1.lineStyle(6, 0x000000);
+        this.dropZone1.fillStyle(0xffffff);
+        this.dropZone1.strokeRect(860, 200, 360, 200);
+        this.dropZone1.fillRect(860, 200, 360, 200);
+
+        this.dropZone2 = this.add.graphics();
+        this.dropZone2.lineStyle(6, 0x000000);
+        this.dropZone2.fillStyle(0xffffff);
+        this.dropZone2.strokeRect(860, 450, 360, 200);
+        this.dropZone2.fillRect(860, 450, 360, 200);
+
+        this.header1 = this.add.graphics();
+        this.header1.lineStyle(6, 0x000000);
+        this.header1.fillStyle(0x4472c4);
+        this.header1.strokeRect(900, 170, 280, 40);
+        this.header1.fillRect(900, 170, 280, 40);
+
+        this.header2 = this.add.graphics();
+        this.header2.lineStyle(6, 0x000000);
+        this.header2.fillStyle(0x4472c4);
+        this.header2.strokeRect(900, 420, 280, 40);
+        this.header2.fillRect(900, 420, 280, 40);
+
+        this.text13 = this.add.text(960, 175, "Perimeter = 28", { fontFamily: "Arial", fontSize: "24px" });
+        this.text14 = this.add.text(960, 425, "Perimeter = 30", { fontFamily: "Arial", fontSize: "24px" });
 
     }
 
-    correctAnswer() {
-        this.scene.start("Page5Scene");
-    }
-
-    incorrectAnswer() {
-        console.log("incorrect");
+    onButtonDown() {
+        console.log("test");
+        this.scene.start("Page7Scene");
     }
 
 }

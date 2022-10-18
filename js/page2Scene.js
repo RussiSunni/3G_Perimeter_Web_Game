@@ -21,12 +21,14 @@ class Page2Scene extends Phaser.Scene {
         this.background.on("pointerdown", this.onButtonDown, this);
 
         // Text.
-        this.text1 = this.add.text(game.config.width / 2 + 200, game.config.height / 2 - 100, "PERIMETER", { fontFamily: "Arial", fontSize: "100px" });
+        this.text1 = this.add.text(game.config.width / 2 + 200, game.config.height / 2 - 150, "PERIMETER", { fontFamily: "Arial", fontSize: "120px" });
         this.text1.setOrigin(0.5, 0.5);
 
-        this.text2 = this.add.text(game.config.width / 2 + 200, game.config.height / 2,
+        var descriptionTextBackground = this.add.rectangle(game.config.width / 2 + 200, game.config.height / 2 - 6, 600, 135, 0xb3c6e7);
+
+        this.text2 = this.add.text(game.config.width / 2 + 200, game.config.height / 2 - 10,
             "Definition: \nThe measure of the length around the \nedge or boundary of an object or shape.",
-            { fontFamily: "Arial", fontSize: "28px" });
+            { fontFamily: "Arial", fontSize: "32px", color: '#000000', align: 'center' });
         this.text2.setOrigin(0.5, 0.5);
 
         // Images.
@@ -48,12 +50,10 @@ class Page2Scene extends Phaser.Scene {
 
         // Audio
         this.sharkSound01 = this.sound.add("shark01");
-
         this.sharkSound01.on("complete", this.playSecondSound, this);
-        //   this.sharkSound01.play();
+        this.sharkSound01.play();
 
-        // this.sharkSound02 = this.sound.add("shark02");
-        // this.sharkSound02.play();
+
 
     }
 
@@ -62,7 +62,8 @@ class Page2Scene extends Phaser.Scene {
     }
 
     playSecondSound() {
-        console.log("test")
+        this.sharkSound02 = this.sound.add("shark02");
+        this.sharkSound02.play();
     }
 
 }
