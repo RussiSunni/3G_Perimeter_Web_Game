@@ -7,6 +7,7 @@ class Page7Scene extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("fish01", "images/fish01.png");
+        this.load.image("tick", "images/tick.png");
     }
 
     create() {
@@ -33,8 +34,11 @@ class Page7Scene extends Phaser.Scene {
         this.roundedRect2 = this.add.graphics();
         this.roundedRect2.fillStyle(0x70ad47, 1);
         this.roundedRect2.fillRoundedRect(610, 480, 600, 80, 16);
-        // this.roundedRect1.setInteractive(new Phaser.Geom.Rectangle(710, 480, 400, 80), Phaser.Geom.Rectangle.Contains);
-        // this.roundedRect1.on("pointerdown", this.onButtonDown, this);
+        this.roundedRect2.setInteractive(new Phaser.Geom.Rectangle(610, 480, 600, 80), Phaser.Geom.Rectangle.Contains);
+        this.roundedRect2.on("pointerdown", this.onButtonDown, this);
+
+        // Arrow.
+        var r1 = this.add.triangle(1150, 520, 0, 0, 50, 35, 0, 70, 0xffc000);
 
         // Graphics
         this.circle1 = this.add.graphics();
@@ -43,11 +47,22 @@ class Page7Scene extends Phaser.Scene {
         this.circle1.strokeCircle(550, 400, 40);
         this.circle1.fillCircle(550, 400, 40);
 
+        // Tick
+        this.tick = this.add.image(560, 380, "tick");
+        this.tick.scaleX = 0.40;
+        this.tick.scaleY = 0.40;
+
         this.circle2 = this.add.graphics();
         this.circle2.lineStyle(12, 0xffffff);
         this.circle2.fillStyle(0xf414b4);
         this.circle2.strokeCircle(550, 520, 40);
         this.circle2.fillCircle(550, 520, 40);
+
+        // Text.
+        this.number1 = this.add.text(550, 400, "1", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
+        this.number1.setOrigin(0.5, 0.5);
+        this.number2 = this.add.text(550, 520, "2", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
+        this.number2.setOrigin(0.5, 0.5);
 
         // Text.
         this.text1 = this.add.text(game.config.width / 2 + 200, game.config.height / 2 - 100, "PERIMETER", { fontFamily: "Arial", fontSize: "100px" });
@@ -56,6 +71,11 @@ class Page7Scene extends Phaser.Scene {
         this.objectiveText2 = this.add.text(620, 382, "Finding Perimeter", { fontFamily: "Arial", fontSize: "32px" });
         this.objectiveText3 = this.add.text(620, 502, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "32px" });
 
+    }
+
+    onButtonDown() {
+        this.roundedRect1.alpha = 0.5;
+        this.scene.start("Page8Scene");
     }
 
 }

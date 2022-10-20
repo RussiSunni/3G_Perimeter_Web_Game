@@ -45,6 +45,23 @@ class Page5Scene extends Phaser.Scene {
         this.text1 = this.add.text(game.config.width / 2 + 25, game.config.height / 2 + 30, "Rectangle", { fontFamily: "Arial", fontSize: "36px", color: '#000000' });
         this.text5 = this.add.text(game.config.width / 2 + 75, game.config.height / 2 - 200, "9 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
         this.text6 = this.add.text(game.config.width / 2 - 140, game.config.height / 2 + 30, "12 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
+
+        // Answer pad.
+        var answerBG = this.add.rectangle(300, 300, 250, 440, 0xacb6de);
+        answerBG.setStrokeStyle(1, 0x00000);
+        var text8 = this.add.text(260, 100, "    9\n    9\n  12\n+12", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
+        var answerBox = this.add.rectangle(300, 400, 200, 100, 0xffffff);
+        answerBox.setStrokeStyle(3, 0x00000);
+        var line = this.add.graphics();
+        line.lineStyle(5, 0x000000, 1);
+        line.lineBetween(200, 320, 400, 320);
+
+
+        var container = this.add.container(800, 70);
+        container.add(answerBG);
+        container.add(text8);
+        container.add(answerBox);
+        container.add(line);
     }
 
     onButtonDown() {
