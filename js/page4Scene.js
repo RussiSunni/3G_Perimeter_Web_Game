@@ -1,4 +1,5 @@
 class Page4Scene extends Phaser.Scene {
+
     constructor() {
         super('Page4Scene');
     }
@@ -99,12 +100,17 @@ class Page4Scene extends Phaser.Scene {
         // Text.
 
         var text2 = this.add.text(400, game.config.height - 50, "Click the correct answer.", { fontFamily: "Arial", fontSize: "40px", fontStyle: "bold" });
-
         this.text5 = this.add.text(game.config.width / 2 + 75, game.config.height / 2 - 200, "9 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
         this.text6 = this.add.text(game.config.width / 2 - 140, game.config.height / 2 + 30, "12 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
         this.text7 = this.add.text(game.config.width / 2 + 25, game.config.height / 2 + 30, "Rectangle", { fontFamily: "Arial", fontSize: "36px", color: '#000000' });
         //this.text6 = this.add.text(game.config.width / 2 - 140, game.config.height / 2 + 30, "12 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
         //this.text7 = this.add.text(game.config.width / 2 + 25, game.config.height / 2 + 30, "Rectangle", { fontFamily: "Arial", fontSize: "36px", color: '#000000' });
+
+
+        function onEvent() {
+            text2.scale = 1.05;
+        }
+        var timedEvent = this.time.delayedCall(3000, onEvent, [], this);
 
     }
 
