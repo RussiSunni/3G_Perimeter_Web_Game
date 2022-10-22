@@ -62,6 +62,40 @@ class Page5Scene extends Phaser.Scene {
         container.add(text8);
         container.add(answerBox);
         container.add(line);
+
+
+        // Keypad     
+        var calcBG = this.add.rectangle(0, 0, 300, 320, 0xacb6de);
+        calcBG.setStrokeStyle(2, 0x000000);
+        var key1 = this.add.rectangle(-100, -120, 100, 80, 0xacb6de);
+        key1.setStrokeStyle(2, 0x000000);
+        var 
+        var key2 = this.add.rectangle(0, -120, 100, 80, 0xacb6de);
+        key2.setStrokeStyle(2, 0x000000);
+        var key3 = this.add.rectangle(100, -120, 100, 80, 0xacb6de);
+        key3.setStrokeStyle(2, 0x000000);
+        var key4 = this.add.rectangle(-100, -40, 100, 80, 0xacb6de);
+        key4.setStrokeStyle(2, 0x000000);
+        var key5 = this.add.rectangle(0, -40, 100, 80, 0xacb6de);
+        key5.setStrokeStyle(2, 0x000000);
+        var key6 = this.add.rectangle(100, -40, 100, 80, 0xacb6de);
+        key6.setStrokeStyle(2, 0x000000);
+        var key7 = this.add.rectangle(-100, 40, 100, 80, 0xacb6de);
+        key7.setStrokeStyle(2, 0x000000);
+        var key8 = this.add.rectangle(0, 40, 100, 80, 0xacb6de);
+        key8.setStrokeStyle(2, 0x000000);
+        var key9 = this.add.rectangle(100, 40, 100, 80, 0xacb6de);
+        key9.setStrokeStyle(2, 0x000000);
+        var key10 = this.add.rectangle(-100, 120, 100, 80, 0xacb6de);
+        key10.setStrokeStyle(2, 0x000000);
+        var key11 = this.add.rectangle(0, 120, 100, 80, 0xacb6de);
+        key11.setStrokeStyle(2, 0x000000);
+        var key12 = this.add.rectangle(100, 120, 100, 80, 0xacb6de);
+        key12.setStrokeStyle(2, 0x000000);
+        var calcContainer = this.add.container(200, 500, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12]);
+        //  this.rect.fillGradientStyle(0xb0500f, 0xffffff, 1);
+
+
     }
 
     onButtonDown() {
