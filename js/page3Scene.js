@@ -46,29 +46,37 @@ class Page3Scene extends Phaser.Scene {
         this.number2 = this.add.text(550, 520, "2", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
         this.number2.setOrigin(0.5, 0.5);
 
+        // Objective 1. 
         // Rounded Rectangle.
-        this.roundedRect1 = this.add.graphics();
-        this.roundedRect1.fillStyle(0x70ad47, 1);
-        this.roundedRect1.fillRoundedRect(610, 360, 600, 80, 16);
-        this.roundedRect1.setInteractive(new Phaser.Geom.Rectangle(610, 360, 600, 80), Phaser.Geom.Rectangle.Contains);
-        this.roundedRect1.on("pointerdown", this.onButtonDown, this);
-
+        var roundedRect1 = this.add.graphics();
+        roundedRect1.fillStyle(0x70ad47, 1);
+        roundedRect1.fillRoundedRect(0, 0, 600, 80, 16);
+        var objectiveText1 = this.add.text(10, 22, "Finding Perimeter", { fontFamily: "Arial", fontSize: "32px" });
         // Arrow.
-        var r1 = this.add.triangle(1150, 400, 0, 0, 50, 35, 0, 70, 0xffc000);
+        var arrow = this.add.triangle(540, 40, 0, 0, 50, 35, 0, 70, 0xffc000);
 
+        // Objective 1 container.
+        var container = this.add.container(610, 360, [roundedRect1, objectiveText1, arrow]);
+        container.setInteractive(new Phaser.Geom.Rectangle(0, 0, 600, 80), Phaser.Geom.Rectangle.Contains);
+        container.on('pointerover', function () {
+            container.scaleY = 1.05;
+            container.y = 358;
+        });
+        container.on('pointerout', function () {
+            container.scale = 1;
+            container.y = 360;
+        });
+        container.on('pointerdown', function () {
+            this.scene.start("Page4Scene");
+        }, this);
+
+        // Objective 2.
         this.roundedRect2 = this.add.graphics();
         this.roundedRect2.fillStyle(0x4472c4, 1);
         this.roundedRect2.fillRoundedRect(610, 480, 600, 80, 16);
 
         // Text.
-        this.objectiveText1 = this.add.text(620, 382, "Finding Perimeter", { fontFamily: "Arial", fontSize: "32px" });
         this.objectiveText2 = this.add.text(620, 502, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "32px" });
 
     }
-
-    onButtonDown() {
-        this.roundedRect1.alpha = 0.5;
-        this.scene.start("Page4Scene");
-    }
-
 }
