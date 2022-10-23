@@ -13,8 +13,8 @@ class Page6Scene extends Phaser.Scene {
         // Background.
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
-        this.background.setInteractive();
-        this.background.on("pointerdown", this.onButtonDown, this);
+        //this.background.setInteractive();
+        // this.background.on("pointerdown", this.onButtonDown, this);
 
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
@@ -33,40 +33,62 @@ class Page6Scene extends Phaser.Scene {
         // Animation
         this.tweens.add({ targets: this.shark02, duration: 1000, x: game.config.width / 5 });
 
-        // Shapes
-        this.square = this.add.graphics();
-        this.square.lineStyle(6, 0x000000);
-        this.square.fillStyle(0xffc000);
-        this.square.strokeRect(200, 400, 120, 120);
-        this.square.fillRect(200, 400, 120, 120);
+        // Shapes ---------
 
-        this.rectangle = this.add.graphics();
-        this.rectangle.lineStyle(6, 0x000000);
-        this.rectangle.fillStyle(0xa8d08c);
-        this.rectangle.strokeRect(500, 500, 240, 100);
-        this.rectangle.fillRect(500, 500, 240, 100);
+        // Square
+        var square = this.add.graphics();
+        square.lineStyle(6, 0x000000);
+        square.fillStyle(0xffc000);
+        square.strokeRect(0, 0, 120, 120);
+        square.fillRect(0, 0, 120, 120);
+        var squareText = this.add.text(-50, 46, "7m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var squareContainer = this.add.container(200, 400, [square, squareText]);
+        squareContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 120, 120), Phaser.Geom.Rectangle.Contains);
+        this.input.setDraggable(squareContainer);
+        this.input.on('drag', function (pointer, squareContainer, dragX, dragY) {
+            squareContainer.x = dragX;
+            squareContainer.y = dragY;
+        });
 
-        var triangle = this.add.triangle(480, 330, 50, 0, 100, 200, 0, 200, 0xed7d31);
+        // Rectangle
+        var rectangle = this.add.graphics();
+        rectangle.lineStyle(6, 0x000000);
+        rectangle.fillStyle(0xa8d08c);
+        rectangle.strokeRect(0, 0, 240, 100);
+        rectangle.fillRect(0, 0, 240, 100);
+        var rectText1 = this.add.text(-50, 36, "5m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var rectText2 = this.add.text(90, -35, "10m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var rectContainer = this.add.container(500, 500, [rectangle, rectText1, rectText2]);
+        rectContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 100), Phaser.Geom.Rectangle.Contains);
+        this.input.setDraggable(rectContainer);
+        this.input.on('drag', function (pointer, rectContainer, dragX, dragY) {
+            rectContainer.x = dragX;
+            rectContainer.y = dragY;
+        });
+
+        var triangle = this.add.triangle(0, 0, 50, 0, 100, 200, 0, 200, 0xed7d31);
         triangle.setStrokeStyle(3, 0x000000);
+        var triangleText1 = this.add.text(-90, 0, "11m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var triangleText2 = this.add.text(30, 0, "11m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var triangleText3 = this.add.text(-20, 100, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var triangleContainer = this.add.container(480, 330, [triangle, triangleText1, triangleText2, triangleText3]);
+        triangleContainer.setInteractive(new Phaser.Geom.Rectangle(-50, -100, 100, 200), Phaser.Geom.Rectangle.Contains);
+        this.input.setDraggable(triangleContainer);
+        this.input.on('drag', function (pointer, triangleContainer, dragX, dragY) {
+            triangleContainer.x = dragX;
+            triangleContainer.y = dragY;
+        });
 
         var data = [60, 0, 120, 50, 100, 120, 20, 120, 0, 50];
-        var pentagon = this.add.polygon(680, 300, data, 0x9966ff, 1);
+        var pentagon = this.add.polygon(0, 0, data, 0x9966ff, 1);
         pentagon.setStrokeStyle(3, 0x000000);
+        var pentagonText1 = this.add.text(-80, -60, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var pentagonText2 = this.add.text(40, -60, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var pentagonText3 = this.add.text(50, 20, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var pentagonText4 = this.add.text(-20, 60, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var pentagonText5 = this.add.text(-90, 20, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
+        var pentagonContainer = this.add.container(680, 300, [pentagon, pentagonText1, pentagonText2, pentagonText3, pentagonText4, pentagonText5]);
 
-
-        // Text.
-        this.text3 = this.add.text(150, 446, "7m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text4 = this.add.text(450, 536, "5m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text5 = this.add.text(590, 465, "10m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text6 = this.add.text(390, 330, "11m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text7 = this.add.text(510, 330, "11m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text8 = this.add.text(460, 430, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-
-        this.text9 = this.add.text(600, 240, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text10 = this.add.text(720, 240, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text11 = this.add.text(730, 320, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text12 = this.add.text(660, 360, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        this.text13 = this.add.text(590, 320, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
 
         // Drop zones
         this.dropZone1 = this.add.graphics();
@@ -100,7 +122,7 @@ class Page6Scene extends Phaser.Scene {
 
     onButtonDown() {
         console.log("test");
-        this.scene.start("Page7Scene");
+        //  this.scene.start("Page7Scene");
     }
 
 }
