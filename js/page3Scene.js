@@ -38,7 +38,7 @@ class Page3Scene extends Phaser.Scene {
         this.circle2.lineStyle(12, 0xffffff);
         this.circle2.fillStyle(0xf414b4);
         this.circle2.strokeCircle(550, 520, 40);
-        this.circle2.fillCircle(550, 520, 40);
+        this.circle2.fillCircle(550, 520, 40); 
 
         // Text.
         this.number1 = this.add.text(550, 400, "1", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
@@ -61,7 +61,7 @@ class Page3Scene extends Phaser.Scene {
         container.on('pointerover', function () {
             container.scaleY = 1.05;
             container.y = 358;
-        });
+        }); 
         container.on('pointerout', function () {
             container.scale = 1;
             container.y = 360;

@@ -31,14 +31,27 @@ class Page7Scene extends Phaser.Scene {
         this.roundedRect1.fillStyle(0x4472c4, 1);
         this.roundedRect1.fillRoundedRect(610, 360, 600, 80, 16);
 
-        this.roundedRect2 = this.add.graphics();
-        this.roundedRect2.fillStyle(0x70ad47, 1);
-        this.roundedRect2.fillRoundedRect(610, 480, 600, 80, 16);
-        this.roundedRect2.setInteractive(new Phaser.Geom.Rectangle(610, 480, 600, 80), Phaser.Geom.Rectangle.Contains);
-        this.roundedRect2.on("pointerdown", this.onButtonDown, this);
+        // Objective 2
+        var roundedRect2 = this.add.graphics();
+        roundedRect2.fillStyle(0x70ad47, 1);
+        roundedRect2.fillRoundedRect(0, 0, 600, 80, 16);
 
         // Arrow.
-        var r1 = this.add.triangle(1150, 520, 0, 0, 50, 35, 0, 70, 0xffc000);
+        var arrow = this.add.triangle(540, 40, 0, 0, 50, 35, 0, 70, 0xffc000);
+        var objective2Text = this.add.text(10, 22, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "32px" });
+        var Objective2Container = this.add.container(610, 480, [roundedRect2, objective2Text, arrow]);
+        Objective2Container.setInteractive(new Phaser.Geom.Rectangle(0, 0, 600, 80), Phaser.Geom.Rectangle.Contains);
+        Objective2Container.on('pointerover', function () {
+            Objective2Container.scaleY = 1.05;
+            Objective2Container.y = 478;
+        });
+        Objective2Container.on('pointerout', function () {
+            Objective2Container.scale = 1;
+            Objective2Container.y = 480;
+        });
+        Objective2Container.on('pointerdown', function () {
+            this.scene.start("Page8Scene");
+        }, this);
 
         // Graphics
         this.circle1 = this.add.graphics();
@@ -69,13 +82,7 @@ class Page7Scene extends Phaser.Scene {
         this.text1.setOrigin(0.5, 0.5);
 
         this.objectiveText2 = this.add.text(620, 382, "Finding Perimeter", { fontFamily: "Arial", fontSize: "32px" });
-        this.objectiveText3 = this.add.text(620, 502, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "32px" });
+
 
     }
-
-    onButtonDown() {
-        this.roundedRect1.alpha = 0.5;
-        this.scene.start("Page8Scene");
-    }
-
 }

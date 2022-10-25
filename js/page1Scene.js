@@ -31,6 +31,8 @@ class Page1Scene extends Phaser.Scene {
         this.button = this.add.image(game.config.width / 2, game.config.height / 2 + 100, "button");
         this.button.setInteractive();
         this.button.on("pointerdown", this.onButtonDown, this);
+        this.button.on('pointerover', this.onButtonHover, this);
+        this.button.on('pointerout', this.onButtonStopHover, this);
 
         this.shark01 = this.add.image(150, 500, "shark01");
         this.shark01.scaleX = 0.3;
@@ -42,8 +44,15 @@ class Page1Scene extends Phaser.Scene {
 
     }
 
-    onButtonDown() {
+    onButtonHover() {
         this.button.alpha = 0.5;
+    }
+
+    onButtonStopHover() {
+        this.button.alpha = 1;
+    }
+
+    onButtonDown() {
         this.scene.start("Page2Scene");
     }
 }

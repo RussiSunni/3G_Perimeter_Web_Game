@@ -65,36 +65,74 @@ class Page5Scene extends Phaser.Scene {
 
 
         // Keypad     
+
+
         var calcBG = this.add.rectangle(0, 0, 300, 320, 0xacb6de);
         calcBG.setStrokeStyle(2, 0x000000);
+
         var key1 = this.add.rectangle(-100, -120, 100, 80, 0xacb6de);
         key1.setStrokeStyle(2, 0x000000);
-        var 
+        var key1Text = this.add.text(0, 0, "1", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key1Text, key1);
+
         var key2 = this.add.rectangle(0, -120, 100, 80, 0xacb6de);
         key2.setStrokeStyle(2, 0x000000);
+        var key2Text = this.add.text(0, 0, "2", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key2Text, key2);
+
         var key3 = this.add.rectangle(100, -120, 100, 80, 0xacb6de);
         key3.setStrokeStyle(2, 0x000000);
+        var key3Text = this.add.text(0, 0, "3", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key3Text, key3);
+
         var key4 = this.add.rectangle(-100, -40, 100, 80, 0xacb6de);
         key4.setStrokeStyle(2, 0x000000);
+        var key4Text = this.add.text(0, 0, "4", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key4Text, key4);
+
         var key5 = this.add.rectangle(0, -40, 100, 80, 0xacb6de);
         key5.setStrokeStyle(2, 0x000000);
+        var key5Text = this.add.text(0, 0, "5", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key5Text, key5);
+
         var key6 = this.add.rectangle(100, -40, 100, 80, 0xacb6de);
         key6.setStrokeStyle(2, 0x000000);
+        var key6Text = this.add.text(0, 0, "6", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key6Text, key6);
+
         var key7 = this.add.rectangle(-100, 40, 100, 80, 0xacb6de);
         key7.setStrokeStyle(2, 0x000000);
+        var key7Text = this.add.text(0, 0, "7", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key7Text, key7);
+
         var key8 = this.add.rectangle(0, 40, 100, 80, 0xacb6de);
         key8.setStrokeStyle(2, 0x000000);
+        var key8Text = this.add.text(0, 0, "8", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key8Text, key8);
+
         var key9 = this.add.rectangle(100, 40, 100, 80, 0xacb6de);
         key9.setStrokeStyle(2, 0x000000);
+        var key9Text = this.add.text(0, 0, "9", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key9Text, key9);
+
         var key10 = this.add.rectangle(-100, 120, 100, 80, 0xacb6de);
         key10.setStrokeStyle(2, 0x000000);
+        var key10Text = this.add.text(0, 0, "10", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key10Text, key10);
+
         var key11 = this.add.rectangle(0, 120, 100, 80, 0xacb6de);
         key11.setStrokeStyle(2, 0x000000);
+        var key11Text = this.add.text(0, 0, "11", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key11Text, key11);
+
         var key12 = this.add.rectangle(100, 120, 100, 80, 0xacb6de);
         key12.setStrokeStyle(2, 0x000000);
-        var calcContainer = this.add.container(200, 500, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12]);
-        //  this.rect.fillGradientStyle(0xb0500f, 0xffffff, 1);
+        var key12Text = this.add.text(0, 0, "12", { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        Phaser.Display.Align.In.Center(key12Text, key12);
 
+
+        var calcContainer = this.add.container(200, 500, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key1Text, key2Text, key3Text, key4Text, key5Text, key6Text, key7Text, key8Text, key9Text, key10Text, key11Text, key12Text]);
+        //  this.rect.fillGradientStyle(0xb0500f, 0xffffff, 1);
 
     }
 

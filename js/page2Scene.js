@@ -51,7 +51,7 @@ class Page2Scene extends Phaser.Scene {
         // Audio
         this.sharkSound01 = this.sound.add("shark01");
         this.sharkSound01.on("complete", this.playSecondSound, this);
-        this.sharkSound01.play();
+        //this.sharkSound01.play();
 
 
 
