@@ -1,9 +1,15 @@
 class Page6Scene extends Phaser.Scene {
     constructor() {
         super('Page6Scene');
+        this.zone1Rect;
+        this.zone2Rect;
+        this.isSquareCorrect;
+        this.isRectCorrect;
+        this.isTriangleCorrect;
+        this.isPentagonCorrect;
     }
     preload() {
-        //load our images or sounds 
+        //load our images or sounds
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("shark02", "images/shark02.png");
@@ -13,8 +19,8 @@ class Page6Scene extends Phaser.Scene {
         // Background.
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
-        this.background.setInteractive();
-        this.background.on("pointerdown", this.onButtonDown, this);
+        // this.background.setInteractive();
+        // this.background.on("pointerdown", this.onButtonDown, this);
 
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
@@ -35,7 +41,11 @@ class Page6Scene extends Phaser.Scene {
 
         //  A drop zone
         var zone1 = this.add.zone(1040, 300, 360, 200).setRectangleDropZone(360, 200);
+        // trying geom for intersection
+        this.zone1Rect = new Phaser.Geom.Rectangle(860, 200, 360, 200);
+
         var zone2 = this.add.zone(1040, 550, 360, 200).setRectangleDropZone(360, 200);
+        this.zone2Rect = new Phaser.Geom.Rectangle(860, 450, 360, 200);
 
         // Drop zones graphics
         var dropZone1 = this.add.graphics();
@@ -62,9 +72,6 @@ class Page6Scene extends Phaser.Scene {
         this.text13 = this.add.text(960, 175, "Perimeter = 28", { fontFamily: "Arial", fontSize: "24px" });
         this.text14 = this.add.text(960, 425, "Perimeter = 30", { fontFamily: "Arial", fontSize: "24px" });
 
-
-
-
         // Shapes ---------
         // Square
         var square = this.add.graphics();
@@ -73,9 +80,10 @@ class Page6Scene extends Phaser.Scene {
         square.strokeRect(0, 0, 120, 120);
         square.fillRect(0, 0, 120, 120);
         var squareText = this.add.text(-50, 46, "7m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        var squareContainer = this.add.container(200, 400, [square, squareText]);
-        squareContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 120, 120), Phaser.Geom.Rectangle.Contains);
-        this.input.setDraggable(squareContainer);
+        this.squareContainer = this.add.container(100, 300, [square, squareText]);
+        this.squareContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 120, 120), Phaser.Geom.Rectangle.Contains);
+        this.squareContainerGeom = new Phaser.Geom.Rectangle(this.squareContainer.x, this.squareContainer.y, 120, 120);
+        this.input.setDraggable(this.squareContainer);
 
         this.input.on('dragstart', function (pointer, squareContainer) {
             this.children.bringToTop(squareContainer);
@@ -118,9 +126,12 @@ class Page6Scene extends Phaser.Scene {
         rectangle.fillRect(0, 0, 240, 100);
         var rectText1 = this.add.text(-50, 36, "5m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
         var rectText2 = this.add.text(90, -35, "10m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        var rectContainer = this.add.container(500, 500, [rectangle, rectText1, rectText2]);
-        rectContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 100), Phaser.Geom.Rectangle.Contains);
-        this.input.setDraggable(rectContainer);
+        this.rectContainer = this.add.container(500, 500, [rectangle, rectText1, rectText2]);
+        this.rectContainerGeom = new Phaser.Geom.Rectangle(this.rectContainer.x, this.rectContainer.y, 240, 100);
+        // this.graphics1 = this.add.graphics({ fillStyle: { color: 0xff0000 } });
+        // this.graphics1.fillRectShape(this.rectContainerGeom);
+        this.rectContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 100), Phaser.Geom.Rectangle.Contains);
+        this.input.setDraggable(this.rectContainer);
         this.input.on('dragstart', function (pointer, rectContainer) {
             this.children.bringToTop(rectContainer);
         }, this);
@@ -143,9 +154,10 @@ class Page6Scene extends Phaser.Scene {
         var triangleText1 = this.add.text(-90, 0, "11m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
         var triangleText2 = this.add.text(30, 0, "11m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
         var triangleText3 = this.add.text(-20, 100, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        var triangleContainer = this.add.container(480, 330, [triangle, triangleText1, triangleText2, triangleText3]);
-        triangleContainer.setInteractive(new Phaser.Geom.Rectangle(-50, -100, 100, 200), Phaser.Geom.Rectangle.Contains);
-        this.input.setDraggable(triangleContainer);
+        this.triangleContainer = this.add.container(480, 330, [triangle, triangleText1, triangleText2, triangleText3]);
+        this.triangleContainerGeom = new Phaser.Geom.Rectangle(this.triangleContainer.x - 50, this.triangleContainer.y - 100, 100, 200);
+        this.triangleContainer.setInteractive(new Phaser.Geom.Rectangle(-50, -100, 100, 200), Phaser.Geom.Rectangle.Contains);
+        this.input.setDraggable(this.triangleContainer);
         this.input.on('dragstart', function (pointer, triangleContainer) {
             this.children.bringToTop(triangleContainer);
         }, this);
@@ -162,9 +174,12 @@ class Page6Scene extends Phaser.Scene {
         var pentagonText3 = this.add.text(50, 20, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
         var pentagonText4 = this.add.text(-20, 60, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
         var pentagonText5 = this.add.text(-90, 20, "6m", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
-        var pentagonContainer = this.add.container(680, 300, [pentagon, pentagonText1, pentagonText2, pentagonText3, pentagonText4, pentagonText5]);
-        pentagonContainer.setInteractive(new Phaser.Geom.Rectangle(-60, -60, 120, 120), Phaser.Geom.Rectangle.Contains);
-        this.input.setDraggable(pentagonContainer);
+        this.pentagonContainer = this.add.container(680, 300, [pentagon, pentagonText1, pentagonText2, pentagonText3, pentagonText4, pentagonText5]);
+        this.pentagonContainerGeom = new Phaser.Geom.Rectangle(this.pentagonContainer.x - 60, this.pentagonContainer.y - 60, 120, 120);
+        // this.graphics1 = this.add.graphics({ fillStyle: { color: 0xff0000 } });
+        // this.graphics1.fillRectShape(this.pentagonContainerGeom);
+        this.pentagonContainer.setInteractive(new Phaser.Geom.Rectangle(-60, -60, 120, 120), Phaser.Geom.Rectangle.Contains);
+        this.input.setDraggable(this.pentagonContainer);
         this.input.on('dragstart', function (pointer, pentagonContainer) {
             this.children.bringToTop(pentagonContainer);
         }, this);
@@ -173,19 +188,53 @@ class Page6Scene extends Phaser.Scene {
             pentagonContainer.y = dragY;
         });
 
-
-
-
-
-
-
-
-
-
     }
 
-    onButtonDown() {
-        this.scene.start("Page7Scene");
+    update() {
+        this.squareContainerGeom.x = this.squareContainer.x;
+        this.squareContainerGeom.y = this.squareContainer.y;
+        this.rectContainerGeom.x = this.rectContainer.x;
+        this.rectContainerGeom.y = this.rectContainer.y;
+        this.triangleContainerGeom.x = this.triangleContainer.x - 50;
+        this.triangleContainerGeom.y = this.triangleContainer.y - 100;
+        this.pentagonContainerGeom.x = this.pentagonContainer.x - 50;
+        this.pentagonContainerGeom.y = this.pentagonContainer.y - 100;
+
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.zone1Rect, this.squareContainerGeom)) {
+            this.isSquareCorrect = true;
+        }
+        else {
+            this.isSquareCorrect = false;
+        }
+
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.zone2Rect, this.rectContainerGeom)) {
+            this.isRectCorrect = true;
+        }
+        else {
+            this.isRectCorrect = false;
+        }
+
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.zone1Rect, this.triangleContainerGeom)) {
+            this.isTriangleCorrect = true;
+        }
+        else {
+            this.isTriangleCorrect = false;
+        }
+
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.zone2Rect, this.pentagonContainerGeom)) {
+            this.isPentagonCorrect = true;
+        }
+        else {
+            this.isPentagonCorrect = false;
+        }
+
+        if (this.isSquareCorrect && this.isRectCorrect && this.isTriangleCorrect && this.isPentagonCorrect) {
+            this.scene.start("Page7Scene");
+        }
     }
+
+    // onButtonDown() {
+    //     this.scene.start("Page7Scene");
+    // }
 
 }
