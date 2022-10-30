@@ -7,12 +7,16 @@ class Page6Scene extends Phaser.Scene {
         this.isRectCorrect;
         this.isTriangleCorrect;
         this.isPentagonCorrect;
+
+        this.hasAudioStarted = false;
     }
     preload() {
         //load our images or sounds
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("shark02", "images/shark02.png");
+
+        this.load.audio("correctAudio", "audio/page6/2-SubBlock_Way-to-go-dude-You-really-kno.mp3");
     }
 
     create() {
@@ -229,12 +233,19 @@ class Page6Scene extends Phaser.Scene {
         }
 
         if (this.isSquareCorrect && this.isRectCorrect && this.isTriangleCorrect && this.isPentagonCorrect) {
-            this.scene.start("Page7Scene");
+
+            if (this.hasAudioStarted == false) {
+                this.correct();
+            }
+            //this.scene.start("Page7Scene");
         }
     }
 
-    // onButtonDown() {
-    //     this.scene.start("Page7Scene");
-    // }
+    correct() {
+        this.hasAudioStarted = true;
+        this.correctAudioSound = this.sound.add("correctAudio");
 
+        this.correctAudioSound.on('complete', () => { this.scene.start("Page7Scene") });
+        this.correctAudioSound.play();
+    }
 }
