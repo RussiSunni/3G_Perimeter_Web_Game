@@ -12,7 +12,7 @@ window.onload = function () {
         //         gravity: { y: 200 }
         //     }
         // },
-        scene: [Page1Scene, Page2Scene, Page4Scene, Page5Scene, Page6Scene, Page7Scene, Page8Scene, Page9Scene, Page10Scene, Page11Scene]
+        scene: [Page1Scene, Page2Scene, Page4Scene, Page5Scene, Page6Scene, Page7Scene, Page8Scene, Page10Scene, Page11Scene]
     };
     game = new Phaser.Game(config);
 }
