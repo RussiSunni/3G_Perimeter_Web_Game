@@ -12,6 +12,9 @@ class Page4Scene extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("shark02", "images/shark02.png");
+
+        this.load.audio("correctAudio", ["audio/applause.wav"]);
+        this.load.audio("incorrectAudio", ["audio/page4/2-SubBlock_I-am-sorry-that-is-incorrect.mp3"]);
     }
 
     create() {
@@ -269,7 +272,9 @@ class Page4Scene extends Phaser.Scene {
         number2.setOrigin(0.5, 0.5);
         number2.alpha = 0;
 
-        // Answers
+        // Answers 
+
+
         // 1
         var roundedRect1 = this.add.graphics();
         roundedRect1.fillStyle(0x70ad47, 1);
@@ -286,32 +291,28 @@ class Page4Scene extends Phaser.Scene {
             container1.y = game.config.height / 2 - 95;
         });
         container1.on('pointerdown', function () {
-            // this.scene.start("Page5Scene");
-            //    this.tweens.add({ targets: [circle1, circle2, number1, number2, container1, container2, instructionText], duration: 1000, alpha: 0 });
+            this.correctAudio = this.sound.add("correctAudio");
+            this.correctAudio.play();
             // Animation     
             var timeline2 = this.tweens.createTimeline();
-
             timeline2.add({
                 targets: [circle1, circle2, number1, number2, container1, container2, this.instructionText],
                 alpha: 0,
                 ease: 'Power1',
                 duration: 1000
             });
-
             timeline2.add({
                 targets: [inputContainer],
                 alpha: 1,
                 ease: 'Power1',
                 duration: 1000
             });
-
             timeline2.add({
                 targets: [calcContainer],
                 alpha: 1,
                 ease: 'Power1',
                 duration: 1000
             });
-
             timeline2.play();
         }, this);
         container1.alpha = 0;
@@ -332,7 +333,29 @@ class Page4Scene extends Phaser.Scene {
             container2.y = game.config.height / 2 + 55;
         });
         container2.on('pointerdown', function () {
-            console.log("incorrect");
+            this.incorrectAudio = this.sound.add("incorrectAudio");
+            this.incorrectAudio.play();
+            // Animation     
+            var timeline2 = this.tweens.createTimeline();
+            timeline2.add({
+                targets: [circle1, circle2, number1, number2, container1, container2, this.instructionText],
+                alpha: 0,
+                ease: 'Power1',
+                duration: 1000
+            });
+            timeline2.add({
+                targets: [inputContainer],
+                alpha: 1,
+                ease: 'Power1',
+                duration: 1000
+            });
+            timeline2.add({
+                targets: [calcContainer],
+                alpha: 1,
+                ease: 'Power1',
+                duration: 1000
+            });
+            timeline2.play();
         }, this);
         container2.alpha = 0;
 
@@ -355,12 +378,10 @@ class Page4Scene extends Phaser.Scene {
             targets: [circle1, circle2, number1, number2, container1, container2, this.instructionText],
             alpha: 1,
             ease: 'Power1',
-            duration: 2000
+            duration: 1000
         });
 
         timeline.play();
-
-        console.log(timeline);
     }
 
     update() {

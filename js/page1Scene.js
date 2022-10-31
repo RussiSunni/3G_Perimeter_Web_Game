@@ -9,8 +9,13 @@ class Page1Scene extends Phaser.Scene {
         this.load.image("button", "images/button.png");
         this.load.image("shark01", "images/shark01.png");
         this.load.image("fish01", "images/fish01.png");
+
+        this.load.audio("music", ["audio/Pacific Ocean.mp3"]);
     }
     create() {
+        this.music = this.sound.add("music", { volume: 0.3 });
+        this.music.play();
+
         //define our objects  
         // Background.
         this.background = this.add.image(0, 0, "background");
@@ -45,11 +50,11 @@ class Page1Scene extends Phaser.Scene {
     }
 
     onButtonHover() {
-        this.button.alpha = 0.5;
+        this.button.scale = 1.15;
     }
 
     onButtonStopHover() {
-        this.button.alpha = 1;
+        this.button.scale = 1.0;
     }
 
     onButtonDown() {
