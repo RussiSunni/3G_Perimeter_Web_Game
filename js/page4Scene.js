@@ -45,15 +45,15 @@ class Page4Scene extends Phaser.Scene {
         line.lineStyle(5, 0x000000, 1);
         line.lineBetween(-100, 40, 100, 40);
         this.inputTextField = this.add.text(-80, 70, this.inputText, { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
-        var inputContainer = this.add.container(1150, 330);
+        this.inputContainer = this.add.container(1150, 330);
 
-        inputContainer.add(answerPadBG);
-        inputContainer.add(text8);
-        inputContainer.add(answerBox);
-        inputContainer.add(line);
-        inputContainer.add(line);
-        inputContainer.add(this.inputTextField);
-        inputContainer.alpha = 0;
+        this.inputContainer.add(answerPadBG);
+        this.inputContainer.add(text8);
+        this.inputContainer.add(answerBox);
+        this.inputContainer.add(line);
+        this.inputContainer.add(line);
+        this.inputContainer.add(this.inputTextField);
+        this.inputContainer.alpha = 0;
 
 
         // Keypad    
@@ -229,9 +229,9 @@ class Page4Scene extends Phaser.Scene {
             submitButton.setFillStyle(0x70ad47);
         }, this);
 
-        var calcContainer = this.add.container(950, 550, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, submitButton, key1Text, key2Text, key3Text, key4Text, key5Text, key6Text, key7Text, key8Text, key9Text, key10Text, key11Text, key12Text, submitButtonText]);
-        calcContainer.scale = 0.8;
-        calcContainer.alpha = 0;
+        this.calcContainer = this.add.container(950, 550, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, submitButton, key1Text, key2Text, key3Text, key4Text, key5Text, key6Text, key7Text, key8Text, key9Text, key10Text, key11Text, key12Text, submitButtonText]);
+        this.calcContainer.scale = 0.8;
+        this.calcContainer.alpha = 0;
 
         // Graphics
         this.rect = this.add.graphics();
@@ -250,27 +250,27 @@ class Page4Scene extends Phaser.Scene {
         var rectContainer = this.add.container(game.config.width / 2 - 80, game.config.height / 2 - 170, [this.rect, this.text5, this.text6, this.text7, this.text8, this.text9]);
 
         // Circles.
-        var circle1 = this.add.graphics();
-        circle1.lineStyle(12, 0xffffff);
-        circle1.fillStyle(0xf414b4);
-        circle1.strokeCircle(130, game.config.height / 2 - 25, 40);
-        circle1.fillCircle(130, game.config.height / 2 - 25, 40);
-        circle1.alpha = 0;
+        this.circle1 = this.add.graphics();
+        this.circle1.lineStyle(12, 0xffffff);
+        this.circle1.fillStyle(0xf414b4);
+        this.circle1.strokeCircle(130, game.config.height / 2 - 45, 40);
+        this.circle1.fillCircle(130, game.config.height / 2 - 45, 40);
+        this.circle1.alpha = 0;
 
-        var circle2 = this.add.graphics();
-        circle2.lineStyle(12, 0xffffff);
-        circle2.fillStyle(0xf414b4);
-        circle2.strokeCircle(130, game.config.height / 2 + 125, 40);
-        circle2.fillCircle(130, game.config.height / 2 + 125, 40);
-        circle2.alpha = 0;
+        this.circle2 = this.add.graphics();
+        this.circle2.lineStyle(12, 0xffffff);
+        this.circle2.fillStyle(0xf414b4);
+        this.circle2.strokeCircle(130, game.config.height / 2 + 105, 40);
+        this.circle2.fillCircle(130, game.config.height / 2 + 105, 40);
+        this.circle2.alpha = 0;
 
         // Text.
-        var number1 = this.add.text(130, game.config.height / 2 - 25, "1", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
-        number1.setOrigin(0.5, 0.5);
-        number1.alpha = 0;
-        var number2 = this.add.text(130, game.config.height / 2 + 125, "2", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
-        number2.setOrigin(0.5, 0.5);
-        number2.alpha = 0;
+        this.number1 = this.add.text(130, game.config.height / 2 - 45, "1", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
+        this.number1.setOrigin(0.5, 0.5);
+        this.number1.alpha = 0;
+        this.number2 = this.add.text(130, game.config.height / 2 + 105, "2", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
+        this.number2.setOrigin(0.5, 0.5);
+        this.number2.alpha = 0;
 
         // Answers 
 
@@ -278,90 +278,73 @@ class Page4Scene extends Phaser.Scene {
         // 1
         var roundedRect1 = this.add.graphics();
         roundedRect1.fillStyle(0x70ad47, 1);
-        roundedRect1.fillRoundedRect(0, 0, 1000, 100, 16);
+        roundedRect1.fillRoundedRect(0, 0, 1030, 100, 16);
         var text3 = this.add.text(20, 15, "Since this is a rectangle, we know that the parallel side lengths are equal \nin length. The bottom side length is 9 ft and the right side length is 12 ft.", { fontFamily: "Arial", fontSize: "30px" });
-        var container1 = this.add.container(190, game.config.height / 2 - 95, [roundedRect1, text3]);
-        container1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 1000, 100), Phaser.Geom.Rectangle.Contains);
-        container1.on('pointerover', function () {
-            container1.scaleY = 1.05;
-            container1.y = game.config.height / 2 - 97.5;
-        });
-        container1.on('pointerout', function () {
-            container1.scale = 1;
-            container1.y = game.config.height / 2 - 95;
-        });
-        container1.on('pointerdown', function () {
+        this.container1 = this.add.container(190, game.config.height / 2 - 95, [roundedRect1, text3]);
+        this.container1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 1000, 100), Phaser.Geom.Rectangle.Contains);
+        this.container1.on('pointerover', function () {
+            this.container1.scaleY = 1.05;
+            this.container1.y = game.config.height / 2 - 97.5;
+        }, this);
+        this.container1.on('pointerout', function () {
+            this.container1.scale = 1;
+            this.container1.y = game.config.height / 2 - 95;
+        }, this);
+        this.container1.on('pointerdown', function () {
             this.correctAudio = this.sound.add("correctAudio");
             this.correctAudio.play();
             // Animation     
             var timeline2 = this.tweens.createTimeline();
             timeline2.add({
-                targets: [circle1, circle2, number1, number2, container1, container2, this.instructionText],
+                targets: [this.circle1, this.circle2, this.number1, this.number2, this.container1, this.container2, this.instructionText],
                 alpha: 0,
                 ease: 'Power1',
                 duration: 1000
             });
             timeline2.add({
-                targets: [inputContainer],
+                targets: [this.inputContainer],
                 alpha: 1,
                 ease: 'Power1',
                 duration: 1000
             });
             timeline2.add({
-                targets: [calcContainer],
+                targets: [this.calcContainer],
                 alpha: 1,
                 ease: 'Power1',
                 duration: 1000
             });
             timeline2.play();
         }, this);
-        container1.alpha = 0;
+        this.container1.alpha = 0;
 
         // 2
         var roundedRect2 = this.add.graphics();
         roundedRect2.fillStyle(0x70ad47, 1);
-        roundedRect2.fillRoundedRect(0, 0, 1000, 100, 16);
+        roundedRect2.fillRoundedRect(0, 0, 1030, 100, 16);
         var text4 = this.add.text(20, 15, "If we add 9 + 12, we know that the bottom side length is 21 ft and the right \nside length is also 21 ft.", { fontFamily: "Arial", fontSize: "30px" });
-        var container2 = this.add.container(190, game.config.height / 2 + 55, [roundedRect2, text4]);
-        container2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 1000, 100), Phaser.Geom.Rectangle.Contains);
-        container2.on('pointerover', function () {
-            container2.scaleY = 1.05;
-            container2.y = game.config.height / 2 + 52.5;
-        });
-        container2.on('pointerout', function () {
-            container2.scale = 1;
-            container2.y = game.config.height / 2 + 55;
-        });
-        container2.on('pointerdown', function () {
+        this.container2 = this.add.container(190, game.config.height / 2 + 55, [roundedRect2, text4]);
+        this.container2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 1000, 100), Phaser.Geom.Rectangle.Contains);
+        this.container2.on('pointerover', function () {
+            this.container2.scaleY = 1.05;
+            this.container2.y = game.config.height / 2 + 52.5;
+        }, this);
+        this.container2.on('pointerout', function () {
+            this.container2.scale = 1;
+            this.container2.y = game.config.height / 2 + 55;
+        }, this);
+        this.container2.on('pointerdown', function () {
             this.incorrectAudio = this.sound.add("incorrectAudio");
+            this.incorrectAudio.on("complete", this.transition, this);
             this.incorrectAudio.play();
             // Animation     
-            var timeline2 = this.tweens.createTimeline();
-            timeline2.add({
-                targets: [circle1, circle2, number1, number2, container1, container2, this.instructionText],
-                alpha: 0,
-                ease: 'Power1',
-                duration: 1000
-            });
-            timeline2.add({
-                targets: [inputContainer],
-                alpha: 1,
-                ease: 'Power1',
-                duration: 1000
-            });
-            timeline2.add({
-                targets: [calcContainer],
-                alpha: 1,
-                ease: 'Power1',
-                duration: 1000
-            });
-            timeline2.play();
+
         }, this);
-        container2.alpha = 0;
+        this.container2.alpha = 0;
 
         // Text.
 
-        this.instructionText = this.add.text(400, game.config.height - 50, "Click the correct answer.", { fontFamily: "Arial", fontSize: "40px", fontStyle: "bold" });
+        this.instructionText = this.add.text(game.config.width / 2, game.config.height - 50, "Click the correct answer.", { fontFamily: "Arial", fontSize: "40px", fontStyle: "bold" });
+        this.instructionText.setOrigin(0.5);
         this.instructionText.alpha = 0;
 
         // Animation     
@@ -375,23 +358,44 @@ class Page4Scene extends Phaser.Scene {
         });
 
         timeline.add({
-            targets: [circle1, circle2, number1, number2, container1, container2, this.instructionText],
+            targets: [this.circle1, this.circle2, this.number1, this.number2, this.container1, this.container2, this.instructionText],
             alpha: 1,
             ease: 'Power1',
             duration: 1000
+        });
+
+        timeline.add({
+            targets: this.instructionText,
+            alpha: 1,
+            ease: 'Power1',
+            duration: 3000
+        });
+
+        timeline.add({
+            targets: this.instructionText,
+            scale: 1.15,
+            ease: 'Power1',
+            duration: 500
+        });
+
+        timeline.add({
+            targets: this.instructionText,
+            scale: 1.0,
+            ease: 'Power1',
+            duration: 500
         });
 
         timeline.play();
     }
 
     update() {
-        this.frame = this.frame + 1;
-        if (this.frame >= 400 && this.frame < 425) {
-            this.instructionText.scale = 1.05;
-        }
-        else if (this.frame >= 425) {
-            this.instructionText.scale = 1.00;
-        }
+        // this.frame = this.frame + 1;
+        // if (this.frame >= 400 && this.frame < 425) {
+        //     this.instructionText.scale = 1.05;
+        // }
+        // else if (this.frame >= 425) {
+        //     this.instructionText.scale = 1.00;
+        // }
 
         this.inputTextField.setText(this.inputText);
     }
@@ -412,5 +416,28 @@ class Page4Scene extends Phaser.Scene {
             console.log("incorrect");
             this.inputText = "";
         }
+    }
+
+    transition() {
+        var timeline2 = this.tweens.createTimeline();
+        timeline2.add({
+            targets: [this.circle1, this.circle2, this.number1, this.number2, this.container1, this.container2, this.instructionText],
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+        timeline2.add({
+            targets: [this.inputContainer],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+        timeline2.add({
+            targets: [this.calcContainer],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+        timeline2.play();
     }
 }
