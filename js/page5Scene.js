@@ -9,6 +9,9 @@ class Page5Scene extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("shark02", "images/shark02.png");
+
+        this.load.audio("correctAudio", "audio/page5/3-SubBlock_Wowzers-You-are-pretty-good-a.mp3");
+        this.load.audio("incorrectAudio", "audio/page5/4-SubBlock_Sorry-pal-That-is-not-correct.mp3");
     }
 
     create() {
@@ -283,11 +286,17 @@ class Page5Scene extends Phaser.Scene {
 
     checkAnswer(answer) {
         if (answer == "42") {
-            console.log("correct")
-            this.scene.start("Page6Scene");
+            this.correctAudio = this.sound.add("correctAudio");
+            this.correctAudio.on("complete", this.nextScene, this);
+            this.correctAudio.play();
         } else {
-            console.log("incorrect");
+            this.incorrectAudio = this.sound.add("incorrectAudio");
+            this.incorrectAudio.play();
             this.inputText = "";
         }
+    }
+
+    nextScene() {
+        this.scene.start("Page6Scene");
     }
 }
