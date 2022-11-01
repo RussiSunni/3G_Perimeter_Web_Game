@@ -37,35 +37,42 @@ class Page5Scene extends Phaser.Scene {
         this.rect.lineStyle(12, 0xffffff);
         this.rect.fillStyle(0xb0500f);
         //  this.rect.fillGradientStyle(0xb0500f, 0xffffff, 1);
-        this.rect.strokeRect(game.config.width / 2 - 50, game.config.height / 2 - 150, 300, 400);
-        this.rect.fillRect(game.config.width / 2 - 50, game.config.height / 2 - 150, 300, 400);
+        this.rect.strokeRect(0, 0, 250, 400);
+        this.rect.fillRect(0, 0, 250, 400);
+        this.rect.setInteractive(new Phaser.Geom.Rectangle(0, 0, 250, 400), Phaser.Geom.Rectangle.Contains);
+        this.rect.on('pointerdown', function () {
+            timeline2.play();
+        }, this);
 
 
-        // Text.        
-        this.text1 = this.add.text(game.config.width / 2 + 25, game.config.height / 2 + 30, "Rectangle", { fontFamily: "Arial", fontSize: "36px", color: '#000000' });
-        this.text5 = this.add.text(game.config.width / 2 + 75, game.config.height / 2 - 200, "9 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
-        this.text6 = this.add.text(game.config.width / 2 - 140, game.config.height / 2 + 30, "12 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
+        this.text5 = this.add.text(100, -50, "9 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
+        this.text6 = this.add.text(- 90, 180, "12 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
+        this.text8 = this.add.text(100, 405, "9 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
+        this.text9 = this.add.text(260, 180, "12 ft", { fontFamily: "Arial", fontSize: "36px", color: '#000000', fontStyle: "bold" });
+        this.text7 = this.add.text(50, 180, "Rectangle", { fontFamily: "Arial", fontSize: "36px", color: '#000000' });
+
+        var rectContainer = this.add.container(game.config.width / 2 - 80, game.config.height / 2 - 170, [this.rect, this.text5, this.text6, this.text7, this.text8, this.text9]);
+
 
         // Answer pad.
-        var answerBG = this.add.rectangle(0, 0, 250, 440, 0xacb6de);
-        answerBG.setStrokeStyle(1, 0x00000);
-        var text8 = this.add.text(-40, -200, "    9\n    9\n  12\n+12", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
-        var answerBox = this.add.rectangle(0, 100, 200, 100, 0xffffff);
+        var answerPadBG = this.add.rectangle(0, 0, 230, 350, 0xacb6de);
+        answerPadBG.setStrokeStyle(1, 0x00000);
+        var text8 = this.add.text(-40, -180, "    9\n    9\n  12\n+12", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
+        var answerBox = this.add.rectangle(0, 110, 200, 100, 0xffffff);
         answerBox.setStrokeStyle(3, 0x00000);
         var line = this.add.graphics();
         line.lineStyle(5, 0x000000, 1);
-        line.lineBetween(-100, 20, 100, 20);
+        line.lineBetween(-100, 40, 100, 40);
         this.inputTextField = this.add.text(-80, 70, this.inputText, { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
-        var inputContainer = this.add.container(1100, 400);
+        this.inputContainer = this.add.container(1150, 330);
 
-        inputContainer.add(answerBG);
-        inputContainer.add(text8);
-        inputContainer.add(answerBox);
-        inputContainer.add(line);
-        inputContainer.add(line);
-        inputContainer.add(this.inputTextField);
-        //Phaser.Display.Align.In.Center(this.inputTextField, inputContainer);
-
+        this.inputContainer.add(answerPadBG);
+        this.inputContainer.add(text8);
+        this.inputContainer.add(answerBox);
+        this.inputContainer.add(line);
+        this.inputContainer.add(line);
+        this.inputContainer.add(this.inputTextField);
+        this.inputContainer.alpha = 0;
 
         // Keypad    
         var calcBG = this.add.rectangle(0, 0, 300, 320, 0xacb6de);
@@ -240,7 +247,26 @@ class Page5Scene extends Phaser.Scene {
             submitButton.setFillStyle(0x70ad47);
         }, this);
 
-        var calcContainer = this.add.container(200, 500, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, submitButton, key1Text, key2Text, key3Text, key4Text, key5Text, key6Text, key7Text, key8Text, key9Text, key10Text, key11Text, key12Text, submitButtonText]);
+        this.calcContainer = this.add.container(950, 550, [calcBG, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, submitButton, key1Text, key2Text, key3Text, key4Text, key5Text, key6Text, key7Text, key8Text, key9Text, key10Text, key11Text, key12Text, submitButtonText]);
+        this.calcContainer.scale = 0.8;
+        this.calcContainer.alpha = 0;
+
+
+        // Animation
+        var timeline2 = this.tweens.createTimeline();
+        timeline2.add({
+            targets: [this.inputContainer],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+        timeline2.add({
+            targets: [this.calcContainer],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
     }
 
     update() {
