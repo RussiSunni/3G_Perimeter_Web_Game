@@ -14,6 +14,8 @@ class Page8Scene extends Phaser.Scene {
         this.load.audio("applause", ["audio/applause.wav"]);
         this.load.audio("buzzer", "audio/buzzer.mp3");
         this.load.audio("incorrectAudio", "audio/page8/4-SubBlock_That-is-incorrect-66-equals.mp3");
+        this.load.audio("correctAudio2", "audio/page9/3-SubBlock_Wow-that-is-quite-excellent.mp3");
+        this.load.audio("incorrectAudio2", "audio/page9/4-SubBlock_Oops-that-is-wrong-Line-up-y.mp3");
 
     }
 
@@ -28,6 +30,14 @@ class Page8Scene extends Phaser.Scene {
         this.buzzerSound = this.sound.add("buzzer");
         this.buzzerSound.on("complete", this.playSecondSound, this);
         this.incorrectSound = this.sound.add("incorrectAudio");
+
+        this.applauseSound2 = this.sound.add("applause");
+        this.applauseSound2.on("complete", this.playSecondSound2, this);
+        this.correctSound2 = this.sound.add("correctAudio2");
+
+        this.buzzerSound2 = this.sound.add("buzzer");
+        this.buzzerSound2.on("complete", this.playSecondSound3, this);
+        this.incorrectSound2 = this.sound.add("incorrectAudio2");
 
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
@@ -281,7 +291,7 @@ class Page8Scene extends Phaser.Scene {
             answer1Container.scale = 1;
         });
         answer1Container.on('pointerdown', function () {
-
+            this.buzzerSound2.play();
         }, this);
         answer1Container.alpha = 0;
 
@@ -297,6 +307,9 @@ class Page8Scene extends Phaser.Scene {
         answer2Container.on('pointerout', function () {
             answer2Container.scale = 1;
         });
+        answer2Container.on('pointerdown', function () {
+            this.buzzerSound2.play();
+        }, this);
         answer2Container.alpha = 0;
 
         var answer3Circle = this.add.circle(0, 0, 60, 0x00b0f0);
@@ -311,6 +324,7 @@ class Page8Scene extends Phaser.Scene {
             answer3Container.scale = 1;
         });
         answer3Container.on('pointerdown', function () {
+            this.applauseSound2.play();
             timeline3.play();
             this.isCorrectAnswer = true;
             this.isComplete = true;
@@ -463,6 +477,14 @@ class Page8Scene extends Phaser.Scene {
     playSecondSound() {
         this.incorrectSound.play();
         this.timeline4.play();
+    }
+
+    playSecondSound2() {
+        this.correctSound2.play();
+    }
+
+    playSecondSound3() {
+        this.incorrectSound2.play();
     }
 
 }
