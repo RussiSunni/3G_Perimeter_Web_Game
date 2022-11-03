@@ -23,8 +23,8 @@ class Page8Scene extends Phaser.Scene {
         // Background.
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
-        this.background.setInteractive();
-        this.background.on("pointerdown", this.onButtonDown, this);
+        // this.background.setInteractive();
+        // this.background.on("pointerdown", this.onButtonDown, this);
 
         this.applauseSound = this.sound.add("applause");
         this.buzzerSound = this.sound.add("buzzer");
@@ -34,6 +34,7 @@ class Page8Scene extends Phaser.Scene {
         this.applauseSound2 = this.sound.add("applause");
         this.applauseSound2.on("complete", this.playSecondSound2, this);
         this.correctSound2 = this.sound.add("correctAudio2");
+        this.correctSound2.on("complete", this.nextScene, this);
 
         this.buzzerSound2 = this.sound.add("buzzer");
         this.buzzerSound2.on("complete", this.playSecondSound3, this);
@@ -485,6 +486,10 @@ class Page8Scene extends Phaser.Scene {
 
     playSecondSound3() {
         this.incorrectSound2.play();
+    }
+
+    nextScene() {
+        this.scene.start("Page10Scene");
     }
 
 }
