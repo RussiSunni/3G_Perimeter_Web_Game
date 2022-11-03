@@ -60,10 +60,7 @@ class Page7Scene extends Phaser.Scene {
         this.circle1.strokeCircle(550, 400, 40);
         this.circle1.fillCircle(550, 400, 40);
 
-        // Tick
-        this.tick = this.add.image(560, 380, "tick");
-        this.tick.scaleX = 0.40;
-        this.tick.scaleY = 0.40;
+
 
         this.circle2 = this.add.graphics();
         this.circle2.lineStyle(12, 0xffffff);
@@ -83,6 +80,9 @@ class Page7Scene extends Phaser.Scene {
 
         this.objectiveText2 = this.add.text(620, 382, "Finding Perimeter", { fontFamily: "Arial", fontSize: "32px" });
 
-
+        // Tick
+        this.tick = this.add.image(560, 380, "tick");
+        this.tick.scaleX = 0.40;
+        this.tick.scaleY = 0.40;
     }
 }
