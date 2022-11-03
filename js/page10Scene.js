@@ -1,14 +1,17 @@
 class Page10Scene extends Phaser.Scene {
     constructor() {
         super('Page10Scene');
+        this.audio1Sound;
     }
     preload() {
         //load our images or sounds 
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
-        this.load.image("fish01", "images/fish01.png");
-        this.load.image("shark01", "images/shark01.png");
-        this.load.image("tick", "images/tick.png");
+        this.load.image("fish02", "images/fish02.png");
+        this.load.image("shark02", "images/shark02.png");
+        this.load.image("cross", "images/cross.png");
+
+        this.load.audio("audio1", ["audio/page10/1-SubBlock_Oh-dear-Nitro-the-shark-is-ch.mp3"]);
     }
 
     create() {
@@ -18,78 +21,142 @@ class Page10Scene extends Phaser.Scene {
         this.background.setInteractive();
         this.background.on("pointerdown", this.onButtonDown, this);
 
+        this.audio1Sound = this.sound.add("audio1");
+
+
         // Images.
-        this.logo = this.add.image(120, 80, "logo");
+        this.logo = this.add.image(1150, 80, "logo");
         this.logo.scaleX = 0.15;
         this.logo.scaleY = 0.15;
 
         // Text.
-        this.text1 = this.add.text(game.config.width / 2 + 200, game.config.height / 2 - 150, "PERIMETER", { fontFamily: "Arial", fontSize: "120px" });
-        this.text1.setOrigin(0.5, 0.5);
+        this.text1 = this.add.text(10, 40, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "60px" });
+
+        var answer1Circle = this.add.circle(0, 0, 70, 0xed7d31);
+        var answer1Text = this.add.text(-30, -25, "5in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer1Container = this.add.container(700, 600, [answer1Circle, answer1Text]);
+        answer1Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        answer1Container.on('pointerover', function () {
+            answer1Container.scale = 1.05;
+        });
+        answer1Container.on('pointerout', function () {
+            answer1Container.scale = 1;
+        });
+        answer1Container.on('pointerdown', function () {
+            this.scene.start("Page11Scene");
+        }, this);
 
 
-        // Rounded Rectangle.
-        this.roundedRect1 = this.add.graphics();
-        this.roundedRect1.fillStyle(0x4472c4, 1);
-        this.roundedRect1.fillRoundedRect(610, 360, 600, 80, 16);
+        var answer2Circle = this.add.circle(0, 0, 70, 0xed7d31);
+        var answer2Text = this.add.text(-30, -25, "7in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer2Cross = this.add.image(0, 0, "cross");
+        answer2Cross.scale = 2;
+        answer2Cross.alpha = 0;
+        var answer2Container = this.add.container(850, 600, [answer2Circle, answer2Text, answer2Cross]);
 
-        this.roundedRect2 = this.add.graphics();
-        this.roundedRect2.fillStyle(0x4472c4, 1);
-        this.roundedRect2.fillRoundedRect(610, 480, 600, 80, 16);
+        answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        answer2Container.on('pointerover', function () {
+            answer2Container.scale = 1.05;
+        });
+        answer2Container.on('pointerout', function () {
+            answer2Container.scale = 1;
+        });
+        answer2Container.on('pointerdown', function () {
+            answer2Cross.alpha = 1;
+        }, this);
 
-        // Graphics
-        this.circle1 = this.add.graphics();
-        this.circle1.lineStyle(12, 0xffffff);
-        this.circle1.fillStyle(0xf414b4);
-        this.circle1.strokeCircle(550, 400, 40);
-        this.circle1.fillCircle(550, 400, 40);
+        var answer3Circle = this.add.circle(0, 0, 70, 0xed7d31);
+        var answer3Text = this.add.text(-30, -25, "9in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer3Cross = this.add.image(0, 0, "cross");
+        answer3Cross.scale = 2;
+        answer3Cross.alpha = 0;
+        var answer3Container = this.add.container(1000, 600, [answer3Circle, answer3Text, answer3Cross]);
+        answer3Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        answer3Container.on('pointerover', function () {
+            answer3Container.scale = 1.05;
+        });
+        answer3Container.on('pointerout', function () {
+            answer3Container.scale = 1;
+        });
+        answer3Container.on('pointerdown', function () {
+            answer3Cross.alpha = 1;
+        }, this);
 
-        this.circle2 = this.add.graphics();
-        this.circle2.lineStyle(12, 0xffffff);
-        this.circle2.fillStyle(0xf414b4);
-        this.circle2.strokeCircle(550, 520, 40);
-        this.circle2.fillCircle(550, 520, 40);
+        var answer4Circle = this.add.circle(0, 0, 70, 0xed7d31);
+        var answer4Text = this.add.text(-30, -25, "6in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer4Cross = this.add.image(0, 0, "cross");
+        answer4Cross.scale = 2;
+        answer4Cross.alpha = 0;
+        var answer4Container = this.add.container(1150, 600, [answer4Circle, answer4Text, answer4Cross]);
+        answer4Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        answer4Container.on('pointerover', function () {
+            answer4Container.scale = 1.05;
+        });
+        answer4Container.on('pointerout', function () {
+            answer4Container.scale = 1;
+        });
+        answer4Container.on('pointerdown', function () {
+            answer4Cross.alpha = 1;
+        }, this);
 
-        // Text.
-        this.number1 = this.add.text(550, 400, "1", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
-        this.number1.setOrigin(0.5, 0.5);
-        this.number2 = this.add.text(550, 520, "2", { fontFamily: "Arial", fontSize: "48px", fontStyle: "bold" });
-        this.number2.setOrigin(0.5, 0.5);
-
-        // Tick
-        this.tick = this.add.image(560, 380, "tick");
-        this.tick.scaleX = 0.40;
-        this.tick.scaleY = 0.40;
-
-        this.tick = this.add.image(560, 500, "tick");
-        this.tick.scaleX = 0.40;
-        this.tick.scaleY = 0.40;
-
-        this.objectiveText2 = this.add.text(620, 382, "Finding Perimeter", { fontFamily: "Arial", fontSize: "32px" });
-        this.objectiveText3 = this.add.text(620, 502, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "32px" });
+        var rect = this.add.rectangle(300, 250, 500, 200, 0x4472c4);
+        rect.setStrokeStyle(6, 0xffffff);
+        var triangle = this.add.triangle(175, 450, 0, 0, 250, 0, 125, 200, 0x4472c4);
+        triangle.setStrokeStyle(6, 0xffffff);
+        var line1 = this.add.line(305, 350, 0, 0, 500, 0, 0x4472c4);
+        line1.setLineWidth(4);
+        //var line2 = this.add.line(550, 250, 0, 0, 0, 200, 0x4472c4);
+        //line2.setLineWidth(4);
+        //var line3 = this.add.line(50, 250, 0, 0, 0, 200, 0x4472c4);
+        //line3.setLineWidth(4);
+        // var line4 = this.add.line(110, 450, 0, 0, 130, 200, 0x4472c4);
+        // line4.setLineWidth(4);
+        //var line5 = this.add.line(240, 450, 130, 0, 0, 200, 0x4472c4);
+        //line5.setLineWidth(4);
 
 
-        this.fish01 = this.add.image(150, 320, "fish01");
-        this.fish01.flipX = true;
-        this.fish01.scaleX = 0.15;
-        this.fish01.scaleY = 0.15;
+        this.text3 = this.add.text(150, 220, "Perimeter = 44in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text4 = this.add.text(250, 110, "13in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text5 = this.add.text(560, 230, "6in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text6 = this.add.text(0, 230, "6in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text7 = this.add.text(55, 430, "7in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text8 = this.add.text(250, 430, "7in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text9 = this.add.text(420, 350, "?", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
 
-        this.shark01 = this.add.image(370, 530, "shark01");
-        this.shark01.flipX = true;
-        this.shark01.scaleX = 0.21;
-        this.shark01.scaleY = 0.21;
+        this.fish02 = this.add.image(900, 350, "fish02");
+        this.fish02.flipX = true;
+        this.fish02.scaleX = 1;
+        this.fish02.scaleY = 1;
 
-        this.roundedRect3 = this.add.graphics();
-        this.roundedRect3.fillStyle(0xd1112c, 1);
-        this.roundedRect3.fillRoundedRect(760, 600, 300, 80, 16);
-        this.roundedRect3.lineStyle(4, 0x000000, 1);
-        this.roundedRect3.strokeRoundedRect(760, 600, 300, 80, 16);
-        this.objectiveText4 = this.add.text(800, 615, "End Lesson", { fontFamily: "Arial", fontSize: "42px" });
+        // Animation
+        var timeline1 = this.tweens.createTimeline();
+
+        timeline1.add({
+            targets: [this.fish02],
+            scale: 4,
+            ease: 'Power1',
+            duration: 2000
+        });
+
+        timeline1.play();
+
+        var timer = this.time.delayedCall(2000, this.audio1Play, null, this);
+        //var timedEvent = this.time.delayedCall(2000, this.audio1Play, this);
+
+        var shark02 = this.add.image(1400, 150, "shark02");
+        shark02.flipX = true;
+        shark02.scaleX = 2;
+        shark02.scaleY = 2;
+
 
     }
 
     onButtonDown() {
         this.scene.start("Page10Scene");
+    }
+
+    audio1Play(sound) {
+        this.audio1Sound.play()
     }
 
 }
