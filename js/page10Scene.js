@@ -130,6 +130,9 @@ class Page10Scene extends Phaser.Scene {
 
 
         this.text3 = this.add.text(-150, -30, "Perimeter = 44in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text10 = this.add.text(-60, 30, "44 - 39", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
+        this.text10.alpha = 0;
+
         this.text4 = this.add.text(-50, -140, "13in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
         this.text5 = this.add.text(260, -20, "6in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
         this.text6 = this.add.text(-310, -20, "6in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
@@ -137,7 +140,7 @@ class Page10Scene extends Phaser.Scene {
         this.text8 = this.add.text(-50, 180, "7in", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
         this.text9 = this.add.text(120, 100, "?", { fontFamily: "Arial", fontSize: "36px", fontStyle: "bold" });
 
-        var shapeContainer = this.add.container(310, 250, [triangle, rect, line1, line2, line3, this.text3, this.text4, this.text5, this.text6, this.text7, this.text8, this.text9]);
+        var shapeContainer = this.add.container(310, 250, [triangle, rect, line1, line2, line3, this.text3, this.text4, this.text5, this.text6, this.text7, this.text8, this.text9, this.text10]);
 
         this.fish02 = this.add.image(900, 350, "fish02");
         this.fish02.flipX = true;
@@ -213,6 +216,62 @@ class Page10Scene extends Phaser.Scene {
             duration: 1000
         });
 
+
+
+
+        // Animation
+        this.timeline4 = this.tweens.createTimeline();
+
+        this.timeline4.add({
+            targets: [this.text4, this.text5, this.text6, this.text7, this.text8, this.text9],
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline4.add({
+            targets: [this.text4, this.text5, this.text6, this.text7, this.text8, this.text9],
+            alpha: 0,
+            ease: 'Power1',
+            duration: 5000
+        });
+
+        this.timeline4.add({
+            targets: [this.text5, this.text6],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline4.add({
+            targets: [this.text7, this.text8],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline4.add({
+            targets: [this.text7, this.text8],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 3000
+        });
+
+        this.timeline4.add({
+            targets: [this.text4],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline4.add({
+            targets: [this.text10],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+
     }
 
     onButtonDown() {
@@ -238,6 +297,7 @@ class Page10Scene extends Phaser.Scene {
 
     playSecondIncorrectSound() {
         this.incorrectSound.play();
+        this.timeline4.play();
     }
 
 }
