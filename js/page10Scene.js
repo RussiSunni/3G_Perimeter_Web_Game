@@ -236,6 +236,21 @@ class Page10Scene extends Phaser.Scene {
         });
 
 
+        this.timeline3.add({
+            targets: [shark02],
+            y: 500,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline3.add({
+            targets: [shark02],
+            x: 700,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+
 
 
         // Animation
