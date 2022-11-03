@@ -25,8 +25,8 @@ class Page10Scene extends Phaser.Scene {
         // Background.
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
-        this.background.setInteractive();
-        this.background.on("pointerdown", this.onButtonDown, this);
+        // this.background.setInteractive();
+        // this.background.on("pointerdown", this.onButtonDown, this);
 
         this.audio1Sound = this.sound.add("audio1");
         this.audio1Sound.on("complete", this.playSharkAnimation, this);
@@ -50,15 +50,15 @@ class Page10Scene extends Phaser.Scene {
 
         var answer1Circle = this.add.circle(0, 0, 70, 0xed7d31);
         var answer1Text = this.add.text(-30, -25, "5in", { fontFamily: "Arial", fontSize: "48px" });
-        var answer1Container = this.add.container(700, 600, [answer1Circle, answer1Text]);
-        answer1Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
-        answer1Container.on('pointerover', function () {
-            answer1Container.scale = 1.05;
-        });
-        answer1Container.on('pointerout', function () {
-            answer1Container.scale = 1;
-        });
-        answer1Container.on('pointerdown', function () {
+        this.answer1Container = this.add.container(700, 600, [answer1Circle, answer1Text]);
+        // this.answer1Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer1Container.on('pointerover', function () {
+            this.answer1Container.scale = 1.05;
+        }, this);
+        this.answer1Container.on('pointerout', function () {
+            this.answer1Container.scale = 1;
+        }, this);
+        this.answer1Container.on('pointerdown', function () {
             // this.scene.start("Page11Scene");
             this.applauseSound.play();
         }, this);
@@ -69,16 +69,15 @@ class Page10Scene extends Phaser.Scene {
         var answer2Cross = this.add.image(0, 0, "cross");
         answer2Cross.scale = 2;
         answer2Cross.alpha = 0;
-        var answer2Container = this.add.container(850, 600, [answer2Circle, answer2Text, answer2Cross]);
-
-        answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
-        answer2Container.on('pointerover', function () {
-            answer2Container.scale = 1.05;
-        });
-        answer2Container.on('pointerout', function () {
-            answer2Container.scale = 1;
-        });
-        answer2Container.on('pointerdown', function () {
+        this.answer2Container = this.add.container(850, 600, [answer2Circle, answer2Text, answer2Cross]);
+        // this.answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer2Container.on('pointerover', function () {
+            this.answer2Container.scale = 1.05;
+        }, this);
+        this.answer2Container.on('pointerout', function () {
+            this.answer2Container.scale = 1;
+        }, this);
+        this.answer2Container.on('pointerdown', function () {
             if (!this.isAlreadyWrongOnce) {
                 answer2Cross.alpha = 1;
                 this.buzzerSound.play();
@@ -94,15 +93,15 @@ class Page10Scene extends Phaser.Scene {
         var answer3Cross = this.add.image(0, 0, "cross");
         answer3Cross.scale = 2;
         answer3Cross.alpha = 0;
-        var answer3Container = this.add.container(1000, 600, [answer3Circle, answer3Text, answer3Cross]);
-        answer3Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
-        answer3Container.on('pointerover', function () {
-            answer3Container.scale = 1.05;
-        });
-        answer3Container.on('pointerout', function () {
-            answer3Container.scale = 1;
-        });
-        answer3Container.on('pointerdown', function () {
+        this.answer3Container = this.add.container(1000, 600, [answer3Circle, answer3Text, answer3Cross]);
+        // this.answer3Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer3Container.on('pointerover', function () {
+            this.answer3Container.scale = 1.05;
+        }, this);
+        this.answer3Container.on('pointerout', function () {
+            this.answer3Container.scale = 1;
+        }, this);
+        this.answer3Container.on('pointerdown', function () {
             if (!this.isAlreadyWrongOnce) {
                 answer3Cross.alpha = 1;
                 this.buzzerSound.play();
@@ -117,15 +116,15 @@ class Page10Scene extends Phaser.Scene {
         var answer4Cross = this.add.image(0, 0, "cross");
         answer4Cross.scale = 2;
         answer4Cross.alpha = 0;
-        var answer4Container = this.add.container(1150, 600, [answer4Circle, answer4Text, answer4Cross]);
-        answer4Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
-        answer4Container.on('pointerover', function () {
-            answer4Container.scale = 1.05;
-        });
-        answer4Container.on('pointerout', function () {
-            answer4Container.scale = 1;
-        });
-        answer4Container.on('pointerdown', function () {
+        this.answer4Container = this.add.container(1150, 600, [answer4Circle, answer4Text, answer4Cross]);
+        // this.answer4Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer4Container.on('pointerover', function () {
+            this.answer4Container.scale = 1.05;
+        }, this);
+        this.answer4Container.on('pointerout', function () {
+            this.answer4Container.scale = 1;
+        }, this);
+        this.answer4Container.on('pointerdown', function () {
             if (!this.isAlreadyWrongOnce) {
                 answer4Cross.alpha = 1;
                 this.buzzerSound.play();
@@ -305,6 +304,11 @@ class Page10Scene extends Phaser.Scene {
     playSharkAnimation() {
         console.log("test")
         this.timeline2.play();
+
+        this.answer1Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer3Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
+        this.answer4Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
     }
 
     playSecondCorrectSound() {
