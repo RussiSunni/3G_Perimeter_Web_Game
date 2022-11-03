@@ -2,6 +2,7 @@ class Page10Scene extends Phaser.Scene {
     constructor() {
         super('Page10Scene');
         this.audio1Sound;
+        this.isAlreadyWrongOnce = false;
     }
     preload() {
         //load our images or sounds 
@@ -17,6 +18,7 @@ class Page10Scene extends Phaser.Scene {
 
         this.load.audio("buzzer", "audio/buzzer.mp3");
         this.load.audio("incorrectAudio", ["audio/page10/4-SubBlock_Oh-dear-no-That-is-incorrect.mp3"]);
+        this.load.audio("incorrectAudio2", ["audio/page10/5-SubBlock_I-am-sorry-that-is-incorrect (1).mp3"]);
     }
 
     create() {
@@ -35,6 +37,8 @@ class Page10Scene extends Phaser.Scene {
         this.buzzerSound = this.sound.add("buzzer");
         this.buzzerSound.on("complete", this.playSecondIncorrectSound, this);
         this.incorrectSound = this.sound.add("incorrectAudio");
+        this.incorrectSound2 = this.sound.add("incorrectAudio2");
+        this.incorrectSound2.on("complete", this.playFishAnimation, this);
 
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
@@ -75,8 +79,14 @@ class Page10Scene extends Phaser.Scene {
             answer2Container.scale = 1;
         });
         answer2Container.on('pointerdown', function () {
-            answer2Cross.alpha = 1;
-            this.buzzerSound.play();
+            if (!this.isAlreadyWrongOnce) {
+                answer2Cross.alpha = 1;
+                this.buzzerSound.play();
+                this.isAlreadyWrongOnce = true;
+            }
+            else {
+                this.incorrectSound2.play();
+            }
         }, this);
 
         var answer3Circle = this.add.circle(0, 0, 70, 0xed7d31);
@@ -93,8 +103,13 @@ class Page10Scene extends Phaser.Scene {
             answer3Container.scale = 1;
         });
         answer3Container.on('pointerdown', function () {
-            answer3Cross.alpha = 1;
-            this.buzzerSound.play();
+            if (!this.isAlreadyWrongOnce) {
+                answer3Cross.alpha = 1;
+                this.buzzerSound.play();
+                this.isAlreadyWrongOnce = true;
+            } else {
+                this.incorrectSound2.play();
+            }
         }, this);
 
         var answer4Circle = this.add.circle(0, 0, 70, 0xed7d31);
@@ -111,8 +126,13 @@ class Page10Scene extends Phaser.Scene {
             answer4Container.scale = 1;
         });
         answer4Container.on('pointerdown', function () {
-            answer4Cross.alpha = 1;
-            this.buzzerSound.play();
+            if (!this.isAlreadyWrongOnce) {
+                answer4Cross.alpha = 1;
+                this.buzzerSound.play();
+                this.isAlreadyWrongOnce = true;
+            } else {
+                this.incorrectSound2.play();
+            }
         }, this);
 
 
