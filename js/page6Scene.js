@@ -15,6 +15,7 @@ class Page6Scene extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("shark02", "images/shark02.png");
+        this.load.image("dotted-rect", "images/dotted-rect.png");
 
         this.load.audio("correctAudio", "audio/page6/2-SubBlock_Way-to-go-dude-You-really-kno.mp3");
         this.load.audio("ding", "audio/ding.mp3");
@@ -50,21 +51,25 @@ class Page6Scene extends Phaser.Scene {
 
         //  A drop zone
         var zone1 = this.add.zone(1040, 300, 360, 200).setRectangleDropZone(360, 200);
-
+        this.dottedRect1 = this.add.image(1040, 300, "dotted-rect");
+        this.dottedRect1.scaleX = 0.16;
+        this.dottedRect1.scaleY = 0.2;
         this.zone1Rect = new Phaser.Geom.Rectangle(860, 200, 360, 200);
 
         var zone2 = this.add.zone(1040, 550, 360, 200).setRectangleDropZone(360, 200);
-
+        this.dottedRect1 = this.add.image(1040, 550, "dotted-rect");
+        this.dottedRect1.scaleX = 0.16;
+        this.dottedRect1.scaleY = 0.2;
         this.zone2Rect = new Phaser.Geom.Rectangle(860, 450, 360, 200);
 
         // Drop zones graphics
-        var dropZone1 = this.add.graphics();
-        dropZone1.lineStyle(6, 0x000000);
-        dropZone1.strokeRect(zone1.x - zone1.input.hitArea.width / 2, zone1.y - zone1.input.hitArea.height / 2, zone1.input.hitArea.width, zone1.input.hitArea.height);
+        //   var dropZone1 = this.add.graphics();
+        //  dropZone1.lineStyle(6, 0x000000);
+        //   dropZone1.strokeRect(zone1.x - zone1.input.hitArea.width / 2, zone1.y - zone1.input.hitArea.height / 2, zone1.input.hitArea.width, zone1.input.hitArea.height);
 
-        var dropZone2 = this.add.graphics();
-        dropZone2.lineStyle(6, 0x000000);
-        dropZone2.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
+        // var dropZone2 = this.add.graphics();
+        // dropZone2.lineStyle(6, 0x000000);
+        // dropZone2.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
 
 
         this.header1 = this.add.graphics();
@@ -104,20 +109,20 @@ class Page6Scene extends Phaser.Scene {
             squareContainer.y = dragY;
         });
         this.input.on('dragenter', function (pointer, squareContainer, zone1) {
-            dropZone1.lineStyle(6, 0x00ffff);
-            dropZone1.strokeRect(zone1.x - zone1.input.hitArea.width / 2, zone1.y - zone1.input.hitArea.height / 2, zone1.input.hitArea.width, zone1.input.hitArea.height);
+            //   dropZone1.lineStyle(6, 0x00ffff);
+            //   dropZone1.strokeRect(zone1.x - zone1.input.hitArea.width / 2, zone1.y - zone1.input.hitArea.height / 2, zone1.input.hitArea.width, zone1.input.hitArea.height);
         });
         this.input.on('dragenter', function (pointer, squareContainer, zone2) {
-            dropZone2.lineStyle(6, 0x00ffff);
-            dropZone2.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
+            //  dropZone2.lineStyle(6, 0x00ffff);
+            //   dropZone2.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
         });
         this.input.on('dragleave', function (pointer, squareContainer, zone1) {
-            dropZone1.lineStyle(6, 0x000000);
-            dropZone1.strokeRect(zone1.x - zone1.input.hitArea.width / 2, zone1.y - zone1.input.hitArea.height / 2, zone1.input.hitArea.width, zone1.input.hitArea.height);
+            //   dropZone1.lineStyle(6, 0x000000);
+            //   dropZone1.strokeRect(zone1.x - zone1.input.hitArea.width / 2, zone1.y - zone1.input.hitArea.height / 2, zone1.input.hitArea.width, zone1.input.hitArea.height);
         });
         this.input.on('dragleave', function (pointer, squareContainer, zone2) {
-            dropZone2.lineStyle(6, 0x000000);
-            dropZone2.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
+            //    dropZone2.lineStyle(6, 0x000000);
+            //    dropZone2.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
         });
 
 
