@@ -86,12 +86,17 @@ class Page8Scene extends Phaser.Scene {
         var answerPadBG2 = this.add.rectangle(0, 0, 250, 150, 0xacb6de);
         answerPadBG2.setStrokeStyle(1, 0x00000);
         this.answerPadText2 = this.add.text(20, -70, " 36\n-22", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
-        this.hilightedText = this.add.text(20, -70, "   6\n   2", { fontFamily: "Arial", fontSize: "48px", color: "#ffff00" });
+        this.hilightedText = this.add.text(20, -70, "   6\n  -2\n   4", { fontFamily: "Arial", fontSize: "48px", color: "#000000" });
+        this.hilightedText2 = this.add.text(20, -70, "  3\n -2\n  1", { fontFamily: "Arial", fontSize: "48px", color: "#000000" });
+        this.hilightedText3 = this.add.text(20, -70, "  36\n -22\n  14", { fontFamily: "Arial", fontSize: "48px", color: "#000000" });
         var answerPadLine2 = this.add.graphics();
         answerPadLine2.lineStyle(5, 0x000000, 1);
         answerPadLine2.lineBetween(-100, 40, 100, 40);
-        var answerPadContainer2 = this.add.container(200, 250, [answerPadBG2, this.answerPadText2, answerPadLine2, this.hilightedText]);
+        var answerPadContainer2 = this.add.container(200, 250, [answerPadBG2, this.answerPadText2, answerPadLine2, this.hilightedText, this.hilightedText2, this.hilightedText3]);
         answerPadContainer2.alpha = 0;
+        this.hilightedText.alpha = 0;
+        this.hilightedText2.alpha = 0;
+        this.hilightedText3.alpha = 0;
 
         this.text9 = this.add.text(100, 350, "Click the correct answer.", { fontFamily: "Arial", fontSize: "24px", fontStyle: "bold" });
         this.text9.alpha = 0;
@@ -449,6 +454,86 @@ class Page8Scene extends Phaser.Scene {
         });
 
 
+        // Show correct answer.
+        this.timeline5 = this.tweens.createTimeline();
+
+        this.timeline5.add({
+            targets: this.answerPadText2,
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: this.answerPadText2,
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText],
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText2],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText2],
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText3],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText3],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.hilightedText3],
+            alpha: 0,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline5.add({
+            targets: [this.answerPadText2],
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
 
 
     }
@@ -495,7 +580,7 @@ class Page8Scene extends Phaser.Scene {
 
     playSecondSound3() {
         this.incorrectSound2.play();
-        this.answerPadText2.alpha = 0;
+        this.timeline5.play();
     }
 
     nextScene() {
