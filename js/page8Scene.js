@@ -85,11 +85,12 @@ class Page8Scene extends Phaser.Scene {
         // Answer pad.
         var answerPadBG2 = this.add.rectangle(0, 0, 250, 150, 0xacb6de);
         answerPadBG2.setStrokeStyle(1, 0x00000);
-        var answerPadText2 = this.add.text(20, -70, " 36\n-22", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
+        this.answerPadText2 = this.add.text(20, -70, " 36\n-22", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
+        this.hilightedText = this.add.text(20, -70, "   6\n   2", { fontFamily: "Arial", fontSize: "48px", color: "#ffff00" });
         var answerPadLine2 = this.add.graphics();
         answerPadLine2.lineStyle(5, 0x000000, 1);
         answerPadLine2.lineBetween(-100, 40, 100, 40);
-        var answerPadContainer2 = this.add.container(200, 250, [answerPadBG2, answerPadText2, answerPadLine2]);
+        var answerPadContainer2 = this.add.container(200, 250, [answerPadBG2, this.answerPadText2, answerPadLine2, this.hilightedText]);
         answerPadContainer2.alpha = 0;
 
         this.text9 = this.add.text(100, 350, "Click the correct answer.", { fontFamily: "Arial", fontSize: "24px", fontStyle: "bold" });
@@ -274,16 +275,16 @@ class Page8Scene extends Phaser.Scene {
 
         var answer4Circle = this.add.circle(0, 0, 60, 0x00b0f0);
         answer4Circle.setStrokeStyle(5, 0xffffff);
-        var answer4Text = this.add.text(-30, -25, "14", { fontFamily: "Arial", fontSize: "48px" });
-        var answer4Container = this.add.container(700, 480, [answer4Circle, answer4Text]);
+        var answer4Text = this.add.text(-60, -60, "14", { fontFamily: "Arial", fontSize: "48px" });
+        var answer4Container = this.add.container(730, 495, [answer4Circle, answer4Text]);
         answer4Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         answer4Container.alpha = 0;
 
 
         var answer1Circle = this.add.circle(0, 0, 60, 0x548135);
         answer1Circle.setStrokeStyle(5, 0xffffff);
-        var answer1Text = this.add.text(-30, -25, "12", { fontFamily: "Arial", fontSize: "48px" });
-        var answer1Container = this.add.container(100, 450, [answer1Circle, answer1Text]);
+        var answer1Text = this.add.text(-60, -60, "12", { fontFamily: "Arial", fontSize: "48px" });
+        var answer1Container = this.add.container(100, 480, [answer1Circle, answer1Text]);
         answer1Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         answer1Container.on('pointerover', function () {
             answer1Container.scale = 1.05;
@@ -299,8 +300,8 @@ class Page8Scene extends Phaser.Scene {
 
         var answer2Circle = this.add.circle(0, 0, 60, 0xf414b4);
         answer2Circle.setStrokeStyle(5, 0xffffff);
-        var answer2Text = this.add.text(-30, -25, "11", { fontFamily: "Arial", fontSize: "48px" });
-        var answer2Container = this.add.container(240, 450, [answer2Circle, answer2Text]);
+        var answer2Text = this.add.text(-60, -60, "11", { fontFamily: "Arial", fontSize: "48px" });
+        var answer2Container = this.add.container(240, 480, [answer2Circle, answer2Text]);
         answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         answer2Container.on('pointerover', function () {
             answer2Container.scale = 1.05;
@@ -315,8 +316,8 @@ class Page8Scene extends Phaser.Scene {
 
         var answer3Circle = this.add.circle(0, 0, 60, 0x00b0f0);
         answer3Circle.setStrokeStyle(5, 0xffffff);
-        var answer3Text = this.add.text(-30, -25, "14", { fontFamily: "Arial", fontSize: "48px" });
-        var answer3Container = this.add.container(380, 450, [answer3Circle, answer3Text]);
+        var answer3Text = this.add.text(-60, -60, "14", { fontFamily: "Arial", fontSize: "48px" });
+        var answer3Container = this.add.container(380, 480, [answer3Circle, answer3Text]);
         answer3Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         answer3Container.on('pointerover', function () {
             answer3Container.scale = 1.05;
@@ -494,6 +495,7 @@ class Page8Scene extends Phaser.Scene {
 
     playSecondSound3() {
         this.incorrectSound2.play();
+        this.answerPadText2.alpha = 0;
     }
 
     nextScene() {
