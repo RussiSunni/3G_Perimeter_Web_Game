@@ -49,8 +49,8 @@ class Page10Scene extends Phaser.Scene {
         this.text1 = this.add.text(10, 40, "Determine Unknown Side Lengths", { fontFamily: "Arial", fontSize: "60px" });
 
         var answer1Circle = this.add.circle(0, 0, 70, 0xed7d31);
-        var answer1Text = this.add.text(-30, -25, "5in", { fontFamily: "Arial", fontSize: "48px" });
-        this.answer1Container = this.add.container(700, 600, [answer1Circle, answer1Text]);
+        var answer1Text = this.add.text(-70, -60, "5in", { fontFamily: "Arial", fontSize: "48px" });
+        this.answer1Container = this.add.container(770, 670, [answer1Circle, answer1Text]);
         // this.answer1Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         this.answer1Container.on('pointerover', function () {
             this.answer1Container.scale = 1.05;
@@ -65,11 +65,11 @@ class Page10Scene extends Phaser.Scene {
 
 
         var answer2Circle = this.add.circle(0, 0, 70, 0xed7d31);
-        var answer2Text = this.add.text(-30, -25, "7in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer2Text = this.add.text(-70, -60, "7in", { fontFamily: "Arial", fontSize: "48px" });
         var answer2Cross = this.add.image(0, 0, "cross");
         answer2Cross.scale = 2;
         answer2Cross.alpha = 0;
-        this.answer2Container = this.add.container(850, 600, [answer2Circle, answer2Text, answer2Cross]);
+        this.answer2Container = this.add.container(920, 670, [answer2Circle, answer2Text, answer2Cross]);
         // this.answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         this.answer2Container.on('pointerover', function () {
             this.answer2Container.scale = 1.05;
@@ -89,11 +89,11 @@ class Page10Scene extends Phaser.Scene {
         }, this);
 
         var answer3Circle = this.add.circle(0, 0, 70, 0xed7d31);
-        var answer3Text = this.add.text(-30, -25, "9in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer3Text = this.add.text(-70, -60, "9in", { fontFamily: "Arial", fontSize: "48px" });
         var answer3Cross = this.add.image(0, 0, "cross");
         answer3Cross.scale = 2;
         answer3Cross.alpha = 0;
-        this.answer3Container = this.add.container(1000, 600, [answer3Circle, answer3Text, answer3Cross]);
+        this.answer3Container = this.add.container(1070, 670, [answer3Circle, answer3Text, answer3Cross]);
         // this.answer3Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         this.answer3Container.on('pointerover', function () {
             this.answer3Container.scale = 1.05;
@@ -112,11 +112,11 @@ class Page10Scene extends Phaser.Scene {
         }, this);
 
         var answer4Circle = this.add.circle(0, 0, 70, 0xed7d31);
-        var answer4Text = this.add.text(-30, -25, "6in", { fontFamily: "Arial", fontSize: "48px" });
+        var answer4Text = this.add.text(-70, -60, "6in", { fontFamily: "Arial", fontSize: "48px" });
         var answer4Cross = this.add.image(0, 0, "cross");
         answer4Cross.scale = 2;
         answer4Cross.alpha = 0;
-        this.answer4Container = this.add.container(1150, 600, [answer4Circle, answer4Text, answer4Cross]);
+        this.answer4Container = this.add.container(1220, 670, [answer4Circle, answer4Text, answer4Cross]);
         // this.answer4Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         this.answer4Container.on('pointerover', function () {
             this.answer4Container.scale = 1.05;
@@ -308,8 +308,8 @@ class Page10Scene extends Phaser.Scene {
 
     }
 
-    onButtonDown() {
-        this.scene.start("Page10Scene");
+    changeScene() {
+        this.scene.start("Page11Scene");
     }
 
     audio1Play(sound) {
@@ -332,6 +332,7 @@ class Page10Scene extends Phaser.Scene {
 
     playFishAnimation() {
         this.timeline3.play();
+        var timer2 = this.time.delayedCall(12000, this.changeScene, null, this);
     }
 
     playSecondIncorrectSound() {
