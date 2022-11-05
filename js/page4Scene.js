@@ -8,10 +8,18 @@ class Page4Scene extends Phaser.Scene {
         this.inputText;
     }
     preload() {
+
+        this.load.dragonbone(
+            "shark02",
+            "resource/shark02/Shark02_tex.png",
+            "resource/shark02/Shark02_tex.json",
+            "resource/shark02/Shark02_ske.json"
+        );
+
         //load our images or sounds 
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
-        this.load.image("shark02", "images/shark02.png");
+        // this.load.image("shark02", "images/shark02.png");
 
         this.load.audio("correctAudio", ["audio/applause.wav"]);
         this.load.audio("incorrectAudio", ["audio/page4/2-SubBlock_I-am-sorry-that-is-incorrect.mp3"]);
@@ -22,6 +30,7 @@ class Page4Scene extends Phaser.Scene {
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
 
+
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
         this.logo.scaleX = 0.15;
@@ -31,10 +40,17 @@ class Page4Scene extends Phaser.Scene {
         this.text1 = this.add.text(10, 40, "Finding Perimeter", { fontFamily: "Arial", fontSize: "60px" });
 
         // Sprites
-        var shark02 = this.add.image(-45, 200, "shark02");
-        shark02.scaleX = 1;
-        shark02.scaleY = 1;
+        //  var shark02 = this.add.image(-45, 200, "shark02");
+        //  shark02.scaleX = 1;
+        //  shark02.scaleY = 1;
 
+        // Dragonbones animation
+        var armatureDisplay = this.add.armature("Armature", "shark02");  // create armature, the second argument should use the name you set when load your db file in preload method, but it's actually optional, so just ignore it if you like.
+        armatureDisplay.animation.play("animtion0");   // play animation
+
+        console.log(armatureDisplay)
+        armatureDisplay.x = -45;
+        armatureDisplay.y = 200;
 
 
         // Graphics
@@ -133,7 +149,7 @@ class Page4Scene extends Phaser.Scene {
         var timeline = this.tweens.createTimeline();
 
         timeline.add({
-            targets: shark02,
+            targets: armatureDisplay,
             x: game.config.width / 4,
             ease: 'Power1',
             duration: 1000
@@ -147,6 +163,7 @@ class Page4Scene extends Phaser.Scene {
         });
 
         timeline.play();
+
     }
 
     update() {

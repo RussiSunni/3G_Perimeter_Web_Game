@@ -12,7 +12,19 @@ window.onload = function () {
         //         gravity: { y: 200 }
         //     }
         // },
-        scene: [Page1Scene, Page2Scene, Page4Scene, Page5Scene, Page6Scene, Page7Scene, Page8Scene, Page10Scene, Page11Scene]
+        render: {
+            pixelArt: false,
+            clearBeforeRender: false
+        },
+
+        disableContextMenu: true,
+        plugins: {
+            scene: [
+                { key: "DragonBones", plugin: dragonBones.phaser.plugin.DragonBonesScenePlugin, mapping: "dragonbone" }    // setup DB scene plugin
+            ]
+        },
+
+        scene: [Page4Scene, Page2Scene, Page1Scene, Page5Scene, Page6Scene, Page7Scene, Page8Scene, Page10Scene, Page11Scene]
     };
     game = new Phaser.Game(config);
 }
