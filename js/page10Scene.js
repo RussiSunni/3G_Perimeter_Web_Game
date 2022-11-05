@@ -9,7 +9,7 @@ class Page10Scene extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
         this.load.image("fish02", "images/fish02.png");
-        this.load.image("shark02", "images/shark02.png");
+        //   this.load.image("shark02", "images/shark02.png");
         this.load.image("cross", "images/cross.png");
 
         this.load.audio("audio1", ["audio/page10/1-SubBlock_Oh-dear-Nitro-the-shark-is-ch.mp3"]);
@@ -19,6 +19,13 @@ class Page10Scene extends Phaser.Scene {
         this.load.audio("buzzer", "audio/buzzer.mp3");
         this.load.audio("incorrectAudio", ["audio/page10/4-SubBlock_Oh-dear-no-That-is-incorrect.mp3"]);
         this.load.audio("incorrectAudio2", ["audio/page10/5-SubBlock_I-am-sorry-that-is-incorrect (1).mp3"]);
+
+        this.load.dragonbone(
+            "shark05",
+            "resource/shark03/Shark03_tex.png",
+            "resource/shark03/Shark03_tex.json",
+            "resource/shark03/Shark03_ske.json"
+        );
     }
 
     create() {
@@ -181,16 +188,24 @@ class Page10Scene extends Phaser.Scene {
         var timer = this.time.delayedCall(2000, this.audio1Play, null, this);
         //var timedEvent = this.time.delayedCall(2000, this.audio1Play, this);
 
-        var shark02 = this.add.image(1700, 150, "shark02");
-        shark02.flipX = true;
-        shark02.scaleX = 2;
-        shark02.scaleY = 2;
+        // var shark02 = this.add.image(1700, 150, "shark02");
+        // shark02.flipX = true;
+        // shark02.scaleX = 2;
+        // shark02.scaleY = 2;
+
+        // Dragonbones animation
+        this.sharkAnimation3 = this.add.armature("Armature", "shark05");
+        this.sharkAnimation3.animation.play("animtion0");   // play animation      
+        this.sharkAnimation3.scale = 2;
+        this.sharkAnimation3.x = 1700;
+        this.sharkAnimation3.y = 150;
+
 
         // Animation
         this.timeline2 = this.tweens.createTimeline();
 
         this.timeline2.add({
-            targets: [shark02],
+            targets: [this.sharkAnimation3],
             x: 1300,
             ease: 'Power1',
             duration: 2000
@@ -237,14 +252,14 @@ class Page10Scene extends Phaser.Scene {
 
 
         this.timeline3.add({
-            targets: [shark02],
+            targets: [this.sharkAnimation3],
             y: 500,
             ease: 'Power1',
             duration: 1000
         });
 
         this.timeline3.add({
-            targets: [shark02],
+            targets: [this.sharkAnimation3],
             x: 700,
             ease: 'Power1',
             duration: 1000

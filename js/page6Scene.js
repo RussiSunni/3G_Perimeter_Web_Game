@@ -14,12 +14,19 @@ class Page6Scene extends Phaser.Scene {
         //load our images or sounds
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
-        this.load.image("shark02", "images/shark02.png");
+        //   this.load.image("shark02", "images/shark02.png");
         this.load.image("dotted-rect", "images/dotted-rect.png");
 
         this.load.audio("correctAudio", "audio/page6/2-SubBlock_Way-to-go-dude-You-really-kno.mp3");
         this.load.audio("ding", "audio/ding.mp3");
         this.load.audio("buzzer", "audio/buzzer.mp3");
+
+        this.load.dragonbone(
+            "shark04",
+            "resource/shark02/Shark02_tex.png",
+            "resource/shark02/Shark02_tex.json",
+            "resource/shark02/Shark02_ske.json"
+        );
     }
 
     create() {
@@ -42,12 +49,18 @@ class Page6Scene extends Phaser.Scene {
         this.text2 = this.add.text(400, game.config.height - 50, "Drag the shape into the correct box.", { fontFamily: "Arial", fontSize: "28px", fontStyle: "bold" });
 
         // Sprites
-        this.shark02 = this.add.image(-45, 200, "shark02");
-        this.shark02.scaleX = 1;
-        this.shark02.scaleY = 1;
+        // this.shark02 = this.add.image(-45, 200, "shark02");
+        // this.shark02.scaleX = 1;
+        // this.shark02.scaleY = 1;
+
+        // Dragonbones animation
+        this.sharkAnimation2 = this.add.armature("Armature", "shark04");  // create armature, the second argument should use the name you set when load your db file in preload method, but it's actually optional, so just ignore it if you like.
+        this.sharkAnimation2.animation.play("animtion0");   // play animation
+        this.sharkAnimation2.x = -45;
+        this.sharkAnimation2.y = 200;
 
         // Animation
-        this.tweens.add({ targets: this.shark02, duration: 1000, x: game.config.width / 5 });
+        this.tweens.add({ targets: this.sharkAnimation2, duration: 1000, x: game.config.width / 5 });
 
         //  A drop zone
         var zone1 = this.add.zone(1040, 300, 360, 200).setRectangleDropZone(360, 200);
