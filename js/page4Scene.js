@@ -3,6 +3,7 @@ class Page4Scene extends Phaser.Scene {
     constructor() {
         super('Page4Scene');
         this.frame = 0;
+        this.hasBeenAnimated = false;
         this.instructionText;
         this.inputTextField;
         this.inputText;
@@ -109,6 +110,7 @@ class Page4Scene extends Phaser.Scene {
             this.correctAudio = this.sound.add("correctAudio");
             this.correctAudio.play();
             this.scene.start("Page5Scene");
+            this.hasBeenAnimated = true;
         }, this);
         this.container1.alpha = 0;
 
@@ -131,6 +133,7 @@ class Page4Scene extends Phaser.Scene {
             this.incorrectAudio = this.sound.add("incorrectAudio");
             this.incorrectAudio.on("complete", this.transition, this);
             this.incorrectAudio.play();
+            this.hasBeenAnimated = true;
             // Animation     
 
         }, this);
@@ -163,23 +166,17 @@ class Page4Scene extends Phaser.Scene {
 
 
 
-        var timeline2 = this.tweens.createTimeline();
+        this.timeline2 = this.tweens.createTimeline();
 
-        timeline2.add({
-            targets: this.instructionText,
-            scale: 1,
-            ease: 'Power1',
-            duration: 4000
-        });
 
-        timeline2.add({
+        this.timeline2.add({
             targets: this.instructionText,
             scale: 1.3,
             ease: 'Power1',
             duration: 1000
         });
 
-        timeline2.add({
+        this.timeline2.add({
             targets: this.instructionText,
             scale: 1,
             ease: 'Power1',
@@ -187,18 +184,17 @@ class Page4Scene extends Phaser.Scene {
         });
 
 
-        timeline2.play();
+
 
     }
 
     update() {
-        // this.frame = this.frame + 1;
-        // if (this.frame >= 400 && this.frame < 425) {
-        //     this.instructionText.scale = 1.05;
-        // }
-        // else if (this.frame >= 425) {
-        //     this.instructionText.scale = 1.00;
-        // }
+        this.frame = this.frame + 1;
+        if (this.frame >= 200 && this.hasBeenAnimated == false) {
+            this.timeline2.play();
+            this.hasBeenAnimated = true;
+        }
+
 
         // this.inputTextField.setText(this.inputText);
     }
