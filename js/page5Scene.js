@@ -19,7 +19,7 @@ class Page5Scene extends Phaser.Scene {
         //  this.load.image("shark02", "images/shark02.png");
 
         this.load.audio("correctAudio", "audio/page5/3-SubBlock_Wowzers-You-are-pretty-good-a.mp3");
-        this.load.audio("incorrectAudio", "audio/page5/4-SubBlock_Sorry-pal-That-is-not-correct.mp3");
+        this.load.audio("page5IncorrectAudio", "audio/page5/4-SubBlock_Sorry-pal-That-is-not-correct.mp3");
 
     }
 
@@ -81,7 +81,7 @@ class Page5Scene extends Phaser.Scene {
         var line = this.add.graphics();
         line.lineStyle(5, 0x000000, 1);
         line.lineBetween(-100, 40, 100, 40);
-        this.inputTextField = this.add.text(-80, 70, this.inputText, { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        this.inputTextField = this.add.text(-15, 70, this.inputText, { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
         this.inputContainer = this.add.container(1150, 330);
 
         this.inputContainer.add(answerPadBG);
@@ -285,6 +285,23 @@ class Page5Scene extends Phaser.Scene {
             duration: 1000
         });
 
+
+        // Animation
+        this.timeline3 = this.tweens.createTimeline();
+        this.timeline3.add({
+            targets: [this.inputTextField],
+            scale: 1.3,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        this.timeline3.add({
+            targets: [this.inputTextField],
+            scale: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
     }
 
     update() {
@@ -301,11 +318,12 @@ class Page5Scene extends Phaser.Scene {
 
     checkAnswer(answer) {
         if (answer == "42") {
+            this.timeline3.play();
             this.correctAudio = this.sound.add("correctAudio");
             this.correctAudio.on("complete", this.nextScene, this);
             this.correctAudio.play();
         } else {
-            this.incorrectAudio = this.sound.add("incorrectAudio");
+            this.incorrectAudio = this.sound.add("page5IncorrectAudio");
             this.incorrectAudio.play();
             this.inputText = "";
         }
