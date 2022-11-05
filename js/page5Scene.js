@@ -73,7 +73,7 @@ class Page5Scene extends Phaser.Scene {
 
 
         // Answer pad.
-        var answerPadBG = this.add.rectangle(0, 0, 230, 350, 0xacb6de);
+        var answerPadBG = this.add.rectangle(0, 0, 230, 360, 0xacb6de);
         answerPadBG.setStrokeStyle(1, 0x00000);
         var text8 = this.add.text(-40, -180, "    9\n    9\n  12\n+12", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
         var answerBox = this.add.rectangle(0, 110, 200, 100, 0xffffff);

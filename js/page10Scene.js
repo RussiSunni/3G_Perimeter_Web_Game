@@ -73,7 +73,7 @@ class Page10Scene extends Phaser.Scene {
 
         var answer2Circle = this.add.circle(0, 0, 70, 0xed7d31);
         var answer2Text = this.add.text(-70, -60, "7in", { fontFamily: "Arial", fontSize: "48px" });
-        var answer2Cross = this.add.image(0, 0, "cross");
+        var answer2Cross = this.add.image(-35, -35, "cross");
         answer2Cross.scale = 2;
         answer2Cross.alpha = 0;
         this.answer2Container = this.add.container(920, 670, [answer2Circle, answer2Text, answer2Cross]);
@@ -97,7 +97,7 @@ class Page10Scene extends Phaser.Scene {
 
         var answer3Circle = this.add.circle(0, 0, 70, 0xed7d31);
         var answer3Text = this.add.text(-70, -60, "9in", { fontFamily: "Arial", fontSize: "48px" });
-        var answer3Cross = this.add.image(0, 0, "cross");
+        var answer3Cross = this.add.image(-35, -35, "cross");
         answer3Cross.scale = 2;
         answer3Cross.alpha = 0;
         this.answer3Container = this.add.container(1070, 670, [answer3Circle, answer3Text, answer3Cross]);
@@ -120,7 +120,7 @@ class Page10Scene extends Phaser.Scene {
 
         var answer4Circle = this.add.circle(0, 0, 70, 0xed7d31);
         var answer4Text = this.add.text(-70, -60, "6in", { fontFamily: "Arial", fontSize: "48px" });
-        var answer4Cross = this.add.image(0, 0, "cross");
+        var answer4Cross = this.add.image(-35, -35, "cross");
         answer4Cross.scale = 2;
         answer4Cross.alpha = 0;
         this.answer4Container = this.add.container(1220, 670, [answer4Circle, answer4Text, answer4Cross]);

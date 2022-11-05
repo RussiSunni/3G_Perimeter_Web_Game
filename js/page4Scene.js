@@ -161,6 +161,34 @@ class Page4Scene extends Phaser.Scene {
 
         timeline.play();
 
+
+
+        var timeline2 = this.tweens.createTimeline();
+
+        timeline2.add({
+            targets: this.instructionText,
+            scale: 1,
+            ease: 'Power1',
+            duration: 4000
+        });
+
+        timeline2.add({
+            targets: this.instructionText,
+            scale: 1.3,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+        timeline2.add({
+            targets: this.instructionText,
+            scale: 1,
+            ease: 'Power1',
+            duration: 1000
+        });
+
+
+        timeline2.play();
+
     }
 
     update() {

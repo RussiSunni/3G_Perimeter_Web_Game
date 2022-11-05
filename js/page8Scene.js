@@ -83,7 +83,7 @@ class Page8Scene extends Phaser.Scene {
 
 
         // Answer pad.
-        var answerPadBG2 = this.add.rectangle(0, 0, 250, 150, 0xacb6de);
+        var answerPadBG2 = this.add.rectangle(0, 5, 250, 170, 0xacb6de);
         answerPadBG2.setStrokeStyle(1, 0x00000);
         this.answerPadText2 = this.add.text(20, -70, " 36\n-22", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
         this.hilightedText = this.add.text(20, -70, "   6\n  -2\n   4", { fontFamily: "Arial", fontSize: "48px", color: "#000000" });
@@ -91,7 +91,7 @@ class Page8Scene extends Phaser.Scene {
         this.hilightedText3 = this.add.text(20, -70, "  36\n -22\n  14", { fontFamily: "Arial", fontSize: "48px", color: "#000000" });
         var answerPadLine2 = this.add.graphics();
         answerPadLine2.lineStyle(5, 0x000000, 1);
-        answerPadLine2.lineBetween(-100, 40, 100, 40);
+        answerPadLine2.lineBetween(-100, 38, 100, 38);
         var answerPadContainer2 = this.add.container(200, 250, [answerPadBG2, this.answerPadText2, answerPadLine2, this.hilightedText, this.hilightedText2, this.hilightedText3]);
         answerPadContainer2.alpha = 0;
         this.hilightedText.alpha = 0;
@@ -305,7 +305,7 @@ class Page8Scene extends Phaser.Scene {
 
         var answer2Circle = this.add.circle(0, 0, 60, 0xf414b4);
         answer2Circle.setStrokeStyle(5, 0xffffff);
-        var answer2Text = this.add.text(-60, -60, "11", { fontFamily: "Arial", fontSize: "48px" });
+        var answer2Text = this.add.text(-55, -60, "11", { fontFamily: "Arial", fontSize: "48px" });
         var answer2Container = this.add.container(240, 480, [answer2Circle, answer2Text]);
         answer2Container.setInteractive(new Phaser.Geom.Circle(0, 0, 70), Phaser.Geom.Circle.Contains);
         answer2Container.on('pointerover', function () {

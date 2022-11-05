@@ -13,7 +13,7 @@ class Page1Scene extends Phaser.Scene {
         this.load.audio("music", ["audio/Pacific Ocean.mp3"]);
     }
     create() {
-        this.music = this.sound.add("music", { volume: 0.3 });
+        this.music = this.sound.add("music", { volume: 0.2 });
         this.music.play();
 
         //define our objects  

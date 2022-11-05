@@ -47,8 +47,8 @@ class Page2Scene extends Phaser.Scene {
         var rect = this.add.graphics();
         rect.lineStyle(12, 0xffffff);
         rect.fillStyle(0xffc000);
-        rect.strokeRect(650, 500, 400, 150);
-        rect.fillRect(650, 500, 400, 150);
+        rect.strokeRect(650, 508, 400, 160);
+        rect.fillRect(650, 508, 400, 160);
         rect.alpha = 0;
 
         var arrowLine = this.add.line(0, 0, 0, 0, 250, 0, 0xed7d31);
@@ -192,22 +192,22 @@ class Page2Scene extends Phaser.Scene {
     update() {
         if (this.arrowHeadX < 1100 && this.arrowHeadY <= 470) {
             this.arrowHead.angle = 0;
-            this.arrowHeadX = this.arrowHeadX + 2;
+            this.arrowHeadX = this.arrowHeadX + 3;
             //  console.log("1")
         }
         else if (this.arrowHeadX >= 1100 && this.arrowHeadY <= 700) {
             this.arrowHead.angle = 90;
-            this.arrowHeadY = this.arrowHeadY + 2;
+            this.arrowHeadY = this.arrowHeadY + 3;
             //  console.log("2")
         }
         else if (this.arrowHeadY >= 700 && this.arrowHeadX > 600) {
             this.arrowHead.angle = 180;
-            this.arrowHeadX = this.arrowHeadX - 2;
+            this.arrowHeadX = this.arrowHeadX - 3;
             //  console.log("3")
         }
         else if (this.arrowHeadX <= 600 && this.arrowHeadY <= 702) {
             this.arrowHead.angle = 270;
-            this.arrowHeadY = this.arrowHeadY - 2;
+            this.arrowHeadY = this.arrowHeadY - 3;
             //  console.log("4")
         }
         this.arrowHead.x = this.arrowHeadX;
