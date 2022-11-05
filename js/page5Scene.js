@@ -5,13 +5,22 @@ class Page5Scene extends Phaser.Scene {
         this.inputText;
     }
     preload() {
+
+        this.load.dragonbone(
+            "shark03",
+            "resource/shark02/Shark02_tex.png",
+            "resource/shark02/Shark02_tex.json",
+            "resource/shark02/Shark02_ske.json"
+        );
+
         //load our images or sounds 
         this.load.image("background", "images/background.jpg");
         this.load.image("logo", "images/logo.png");
-        this.load.image("shark02", "images/shark02.png");
+        //  this.load.image("shark02", "images/shark02.png");
 
         this.load.audio("correctAudio", "audio/page5/3-SubBlock_Wowzers-You-are-pretty-good-a.mp3");
         this.load.audio("incorrectAudio", "audio/page5/4-SubBlock_Sorry-pal-That-is-not-correct.mp3");
+
     }
 
     create() {
@@ -28,12 +37,18 @@ class Page5Scene extends Phaser.Scene {
         this.text1 = this.add.text(10, 40, "Finding Perimeter", { fontFamily: "Arial", fontSize: "60px" });
 
         // Sprites
-        this.shark02 = this.add.image(-45, 200, "shark02");
-        this.shark02.scaleX = 1;
-        this.shark02.scaleY = 1;
+        // this.shark02 = this.add.image(-45, 200, "shark02");
+        // this.shark02.scaleX = 1;
+        // this.shark02.scaleY = 1;
+
+        // Dragonbones animation
+        this.sharkAnimation2 = this.add.armature("Armature", "shark03");  // create armature, the second argument should use the name you set when load your db file in preload method, but it's actually optional, so just ignore it if you like.
+        this.sharkAnimation2.animation.play("animtion0");   // play animation
+        this.sharkAnimation2.x = -45;
+        this.sharkAnimation2.y = 200;
 
         // Animation
-        this.tweens.add({ targets: this.shark02, duration: 1000, x: game.config.width / 4 });
+        this.tweens.add({ targets: this.sharkAnimation2, duration: 1000, x: game.config.width / 4 });
 
         // Graphics
         this.rect = this.add.graphics();

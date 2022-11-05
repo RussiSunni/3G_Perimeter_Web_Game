@@ -45,13 +45,10 @@ class Page4Scene extends Phaser.Scene {
         //  shark02.scaleY = 1;
 
         // Dragonbones animation
-        var armatureDisplay = this.add.armature("Armature", "shark02");  // create armature, the second argument should use the name you set when load your db file in preload method, but it's actually optional, so just ignore it if you like.
-        armatureDisplay.animation.play("animtion0");   // play animation
-
-        console.log(armatureDisplay)
-        armatureDisplay.x = -45;
-        armatureDisplay.y = 200;
-
+        this.sharkAnimation1 = this.add.armature("Armature", "shark02");  // create armature, the second argument should use the name you set when load your db file in preload method, but it's actually optional, so just ignore it if you like.
+        this.sharkAnimation1.animation.play("animtion0");   // play animation
+        this.sharkAnimation1.x = -45;
+        this.sharkAnimation1.y = 200;
 
         // Graphics
         this.rect = this.add.graphics();
@@ -149,7 +146,7 @@ class Page4Scene extends Phaser.Scene {
         var timeline = this.tweens.createTimeline();
 
         timeline.add({
-            targets: armatureDisplay,
+            targets: this.sharkAnimation1,
             x: game.config.width / 4,
             ease: 'Power1',
             duration: 1000
