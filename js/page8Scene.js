@@ -74,7 +74,7 @@ class Page8Scene extends Phaser.Scene {
         var answerPadText = this.add.text(20, -150, "10\n  6\n+6", { fontFamily: "Arial", fontSize: "48px", color: "0x000000" });
         var answerPadBox = this.add.rectangle(0, 80, 200, 100, 0xffffff);
         answerPadBox.setStrokeStyle(3, 0x00000);
-        this.inputTextField = this.add.text(-80, 70, this.inputText, { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
+        this.inputTextField = this.add.text(0, 70, this.inputText, { fontFamily: "Arial", fontSize: "48px", color: "0x000000", align: "center" });
         var answerPadLine = this.add.graphics();
         answerPadLine.lineStyle(5, 0x000000, 1);
         answerPadLine.lineBetween(-100, 10, 100, 10);
