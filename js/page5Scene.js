@@ -8,9 +8,9 @@ class Page5Scene extends Phaser.Scene {
 
         this.load.dragonbone(
             "shark03",
-            "resource/shark02/Shark02_tex.png",
-            "resource/shark02/Shark02_tex.json",
-            "resource/shark02/Shark02_ske.json"
+            "resource/shark02/without top fin/Shark02_tex.png",
+            "resource/shark02/without top fin/Shark02_tex.json",
+            "resource/shark02/without top fin/Shark02_ske.json"
         );
 
         //load our images or sounds 

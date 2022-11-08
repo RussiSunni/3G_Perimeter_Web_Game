@@ -17,8 +17,8 @@ class Page10Scene extends Phaser.Scene {
         this.load.audio("correctAudio", ["audio/page10/3-SubBlock_5-is-correct-Excellent-work.mp3"]);
 
         this.load.audio("buzzer", "audio/buzzer.mp3");
-        this.load.audio("incorrectAudio", ["audio/page10/4-SubBlock_Oh-dear-no-That-is-incorrect.mp3"]);
-        this.load.audio("incorrectAudio2", ["audio/page10/5-SubBlock_I-am-sorry-that-is-incorrect (1).mp3"]);
+        this.load.audio("page10IncorrectAudio", ["audio/page10/4-SubBlock_Oh-dear-no-That-is-incorrect.mp3"]);
+        this.load.audio("page10IncorrectAudio2", ["audio/page10/5-SubBlock_I-am-sorry-that-is-incorrect (1).mp3"]);
 
         this.load.dragonbone(
             "shark05",
@@ -43,8 +43,8 @@ class Page10Scene extends Phaser.Scene {
         this.correctSound.on("complete", this.playFishAnimation, this);
         this.buzzerSound = this.sound.add("buzzer");
         this.buzzerSound.on("complete", this.playSecondIncorrectSound, this);
-        this.incorrectSound = this.sound.add("incorrectAudio");
-        this.incorrectSound2 = this.sound.add("incorrectAudio2");
+        this.incorrectSound = this.sound.add("page10IncorrectAudio");
+        this.incorrectSound2 = this.sound.add("page10IncorrectAudio2");
         this.incorrectSound2.on("complete", this.playFishAnimation, this);
 
         // Images.

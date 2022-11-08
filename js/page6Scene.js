@@ -17,15 +17,15 @@ class Page6Scene extends Phaser.Scene {
         //   this.load.image("shark02", "images/shark02.png");
         this.load.image("dotted-rect", "images/dotted-rect.png");
 
-        this.load.audio("correctAudio", "audio/page6/2-SubBlock_Way-to-go-dude-You-really-kno.mp3");
+        this.load.audio("p6CorrectAudio", "audio/page6/2-SubBlock_Way-to-go-dude-You-really-kno.mp3");
         this.load.audio("ding", "audio/ding.mp3");
         this.load.audio("buzzer", "audio/buzzer.mp3");
 
         this.load.dragonbone(
             "shark04",
-            "resource/shark02/Shark02_tex.png",
-            "resource/shark02/Shark02_tex.json",
-            "resource/shark02/Shark02_ske.json"
+            "resource/shark02/without top fin/Shark02_tex.png",
+            "resource/shark02/without top fin/Shark02_tex.json",
+            "resource/shark02/without top fin/Shark02_ske.json"
         );
     }
 
@@ -302,7 +302,7 @@ class Page6Scene extends Phaser.Scene {
 
     correct() {
         this.hasAudioStarted = true;
-        this.correctAudioSound = this.sound.add("correctAudio");
+        this.correctAudioSound = this.sound.add("p6CorrectAudio");
 
         this.correctAudioSound.on('complete', () => { this.scene.start("Page7Scene") });
         this.correctAudioSound.play();

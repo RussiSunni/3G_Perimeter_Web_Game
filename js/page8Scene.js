@@ -14,8 +14,8 @@ class Page8Scene extends Phaser.Scene {
         this.load.audio("applause", ["audio/applause.wav"]);
         this.load.audio("buzzer", "audio/buzzer.mp3");
         this.load.audio("S8IncorrectAudio", "audio/page8/4-SubBlock_That-is-incorrect-66-equals.mp3");
-        this.load.audio("correctAudio2", "audio/page9/3-SubBlock_Wow-that-is-quite-excellent.mp3");
-        this.load.audio("incorrectAudio2", "audio/page9/4-SubBlock_Oops-that-is-wrong-Line-up-y.mp3");
+        this.load.audio("page8correctAudio2", "audio/page9/3-SubBlock_Wow-that-is-quite-excellent.mp3");
+        this.load.audio("page8IncorrectAudio2", "audio/page9/4-SubBlock_Oops-that-is-wrong-Line-up-y.mp3");
 
     }
 
@@ -33,12 +33,12 @@ class Page8Scene extends Phaser.Scene {
 
         this.applauseSound2 = this.sound.add("applause");
         this.applauseSound2.on("complete", this.playSecondSound2, this);
-        this.correctSound2 = this.sound.add("correctAudio2");
+        this.correctSound2 = this.sound.add("page8correctAudio2");
         this.correctSound2.on("complete", this.nextScene, this);
 
         this.buzzerSound2 = this.sound.add("buzzer");
         this.buzzerSound2.on("complete", this.playSecondSound3, this);
-        this.incorrectSound2 = this.sound.add("incorrectAudio2");
+        this.incorrectSound2 = this.sound.add("page8IncorrectAudio2");
 
         // Images.
         this.logo = this.add.image(1150, 80, "logo");
